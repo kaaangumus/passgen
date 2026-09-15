@@ -1,0 +1,23 @@
+﻿{
+  "ext_name":          { "message": "PassGen - \u5bc6\u7801\u751f\u6210\u5668" },
+  "ext_description":   { "message": "\u5b89\u5168\u5bc6\u7801\u751f\u6210\u5668\uff0c\u652f\u6301\u53f3\u952e\u83dc\u5355\u3002" },
+  "ctx_menu_generate": { "message": "\u751f\u6210\u5bc6\u7801" },
+  "brand_tagline":     { "message": "\u5bc6\u7801\u751f\u6210\u5668" },
+  "pwd_placeholder":   { "message": "\u70b9\u51fb\u201c\u751f\u6210\u201d\u4ee5\u521b\u5efa\u5bc6\u7801" },
+  "btn_copy_title":    { "message": "\u590d\u5236\u5230\u526a\u8d34\u677f" },
+  "lbl_length":        { "message": "\u957f\u5ea6" },
+  "lbl_char_types":    { "message": "\u5b57\u7b26\u7c7b\u578b" },
+  "opt_uppercase":     { "message": "\u5927\u5199\u5b57\u6bcd (A-Z)" },
+  "opt_lowercase":     { "message": "\u5c0f\u5199\u5b57\u6bcd (a-z)" },
+  "opt_numbers":       { "message": "\u6570\u5b57 (0-9)" },
+  "opt_symbols":       { "message": "\u7b26\u53f7 (!@#$)" },
+  "btn_generate":      { "message": "\u751f\u6210\u5bc6\u7801" },
+  "notice_copied":     { "message": "\u5df2\u590d\u5236\u5230\u526a\u8d34\u677f" },
+  "footer_hint":       { "message": "\u53f3\u952e\u83dc\u5355\u4f7f\u7528\u8fd9\u4e9b\u8bbe\u7f6e" },
+  "toast_title":       { "message": "\u5bc6\u7801\u5df2\u751f\u6210" },
+  "toast_sub":         { "message": "\u5df2\u590d\u5236\u5230\u526a\u8d34\u677f\u3002" },
+  "strength_weak":     { "message": "\u5f31" },
+  "strength_fair":     { "message": "\u4e00\u822c" },
+  "strength_strong":   { "message": "\u5f3a" },
+  "strength_vstrong":  { "message": "\u975e\u5e38\u5f3a" }
+}

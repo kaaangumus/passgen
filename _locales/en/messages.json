@@ -1,0 +1,23 @@
+﻿{
+  "ext_name":          { "message": "PassGen - Password Generator" },
+  "ext_description":   { "message": "Secure password generator with right-click context menu. Generate strong passwords instantly." },
+  "ctx_menu_generate": { "message": "Generate Password" },
+  "brand_tagline":     { "message": "Password Generator" },
+  "pwd_placeholder":   { "message": "Click Generate to create a password" },
+  "btn_copy_title":    { "message": "Copy to clipboard" },
+  "lbl_length":        { "message": "Length" },
+  "lbl_char_types":    { "message": "Character Types" },
+  "opt_uppercase":     { "message": "Uppercase (A-Z)" },
+  "opt_lowercase":     { "message": "Lowercase (a-z)" },
+  "opt_numbers":       { "message": "Numbers (0-9)" },
+  "opt_symbols":       { "message": "Symbols (!@#$)" },
+  "btn_generate":      { "message": "Generate Password" },
+  "notice_copied":     { "message": "Copied to clipboard" },
+  "footer_hint":       { "message": "Right-click menu uses these settings" },
+  "toast_title":       { "message": "Password Generated" },
+  "toast_sub":         { "message": "Copied to clipboard." },
+  "strength_weak":     { "message": "Weak" },
+  "strength_fair":     { "message": "Fair" },
+  "strength_strong":   { "message": "Strong" },
+  "strength_vstrong":  { "message": "Very Strong" }
+}

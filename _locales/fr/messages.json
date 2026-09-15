@@ -1,0 +1,23 @@
+﻿{
+  "ext_name":          { "message": "PassGen - G\u00e9n\u00e9rateur de Mots de Passe" },
+  "ext_description":   { "message": "G\u00e9n\u00e9rateur s\u00e9curis\u00e9 de mots de passe avec support du menu contextuel." },
+  "ctx_menu_generate": { "message": "G\u00e9n\u00e9rer un Mot de Passe" },
+  "brand_tagline":     { "message": "G\u00e9n\u00e9rateur de Mots de Passe" },
+  "pwd_placeholder":   { "message": "Cliquez sur G\u00e9n\u00e9rer pour cr\u00e9er un mot de passe" },
+  "btn_copy_title":    { "message": "Copier dans le presse-papiers" },
+  "lbl_length":        { "message": "Longueur" },
+  "lbl_char_types":    { "message": "Types de Caract\u00e8res" },
+  "opt_uppercase":     { "message": "Majuscules (A-Z)" },
+  "opt_lowercase":     { "message": "Minuscules (a-z)" },
+  "opt_numbers":       { "message": "Chiffres (0-9)" },
+  "opt_symbols":       { "message": "Symboles (!@#$)" },
+  "btn_generate":      { "message": "G\u00e9n\u00e9rer un Mot de Passe" },
+  "notice_copied":     { "message": "Copi\u00e9 dans le presse-papiers" },
+  "footer_hint":       { "message": "Le menu contextuel utilise ces param\u00e8tres" },
+  "toast_title":       { "message": "Mot de Passe G\u00e9n\u00e9r\u00e9" },
+  "toast_sub":         { "message": "Copi\u00e9 dans le presse-papiers." },
+  "strength_weak":     { "message": "Faible" },
+  "strength_fair":     { "message": "Moyen" },
+  "strength_strong":   { "message": "Fort" },
+  "strength_vstrong":  { "message": "Tr\u00e8s Fort" }
+}

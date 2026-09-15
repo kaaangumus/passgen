@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PassGen</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <div class="brand-text">
+          <span class="brand-name">PassGen</span>
+          <span class="brand-tagline" id="brand_tagline"></span>
+        </div>
+      </div>
+      <select class="lang-select" id="langSelect">
+        <option value="tr">Türkçe</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+        <option value="ru">Русский</option>
+        <option value="zh">中文</option>
+      </select>
+    </header>
+
+    <!-- Navigation Tabs (4 Sekme) -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-generator" id="tab_btn_gen"></button>
+      <button class="tab-btn" data-tab="tab-history" id="tab_btn_hist"></button>
+      <button class="tab-btn" data-tab="tab-settings" id="tab_btn_settings"></button>
+      <button class="tab-btn" data-tab="tab-privacy" id="tab_btn_priv"></button>
+    </nav>
+
+    <!-- TAB 1: GENERATOR -->
+    <div class="tab-pane active" id="tab-generator">
+      <!-- Password Display -->
+      <section class="password-section">
+        <div class="password-box" id="passwordBox">
+          <span class="password-display empty" id="passwordDisplay"></span>
+          <button class="btn-icon" id="copyBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+        </div>
+        <!-- Güç + Kırılma Süresi -->
+        <div class="strength-row">
+          <div class="strength-track"><div class="strength-fill" id="strengthFill"></div></div>
+          <span class="strength-text" id="strengthText">&#8212;</span>
+        </div>
+        <div class="crack-row" id="crackRow" style="display:none">
+          <span class="crack-label" id="lbl_crack_time"></span>
+          <span class="crack-value" id="crackValue"></span>
+        </div>
+      </section>
+
+      <!-- Settings -->
+      <section class="settings-section">
+        <!-- Uzunluk -->
+        <div class="setting-row">
+          <label class="setting-label" id="lbl_length"></label>
+          <span class="setting-value" id="lengthValue">16</span>
+        </div>
+        <input type="range" class="range-input" id="lengthSlider" min="8" max="64" value="16" step="1" />
+        <div class="range-marks"><span>8</span><span>64</span></div>
+
+        <!-- Karakter Türleri -->
+        <div class="setting-row" style="margin-top:14px">
+          <label class="setting-label" id="lbl_char_types"></label>
+        </div>
+        <div class="checkbox-grid">
+          <label class="checkbox-label">
+            <input type="checkbox" id="opt-uppercase" checked />
+            <span class="checkbox-box"></span>
+            <span id="opt_uppercase"></span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="opt-lowercase" checked />
+            <span class="checkbox-box"></span>
+            <span id="opt_lowercase"></span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="opt-numbers" checked />
+            <span class="checkbox-box"></span>
+            <span id="opt_numbers"></span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="opt-symbols" checked />
+            <span class="checkbox-box"></span>
+            <span id="opt_symbols"></span>
+          </label>
+        </div>
+
+        <!-- Hariç Tut -->
+        <div class="setting-row" style="margin-top:12px">
+          <label class="setting-label" id="lbl_exclude"></label>
+        </div>
+        <input type="text" class="exclude-input" id="excludeInput" maxlength="30" spellcheck="false" autocomplete="off" />
+      </section>
+
+      <!-- Generate Button -->
+      <div class="action-section">
+        <button class="btn-primary" id="generateBtn">Şifre Üret</button>
+      </div>
+      <div class="copy-notice" id="copyNotice"></div>
+    </div>
+
+    <!-- TAB 2: HISTORY -->
+    <div class="tab-pane" id="tab-history">
+      <div class="pane-header">
+        <span class="pane-title" id="lbl_history_title"></span>
+        <button class="btn-clear" id="clearHistoryBtn"></button>
+      </div>
+      <div class="history-empty" id="historyEmpty"></div>
+      <ul class="history-list" id="historyList"></ul>
+    </div>
+
+    <!-- TAB 3: SETTINGS -->
+    <div class="tab-pane" id="tab-settings">
+      <div class="settings-card">
+        <!-- Otomatik Geçmiş Temizleme -->
+        <div class="setting-group">
+          <div class="setting-meta">
+            <label class="setting-title" id="lbl_auto_clean"></label>
+            <p class="setting-desc" id="desc_auto_clean"></p>
+          </div>
+          <select class="select-input" id="autoCleanSelect">
+            <option value="never" id="opt_clean_never"></option>
+            <option value="24h" id="opt_clean_24h"></option>
+            <option value="7d" id="opt_clean_7d"></option>
+            <option value="30d" id="opt_clean_30d"></option>
+          </select>
+        </div>
+
+        <!-- Geçmiş Kapasitesi -->
+        <div class="setting-group">
+          <div class="setting-meta">
+            <label class="setting-title" id="lbl_hist_limit"></label>
+            <p class="setting-desc" id="desc_hist_limit"></p>
+          </div>
+          <select class="select-input" id="histLimitSelect">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+
+        <!-- Toast Bildirimi Gösterimi -->
+        <div class="setting-group">
+          <div class="setting-meta">
+            <label class="setting-title" id="lbl_show_toast"></label>
+            <p class="setting-desc" id="desc_show_toast"></p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="showToastToggle" checked />
+            <span class="slider-toggle"></span>
+          </label>
+        </div>
+
+        <!-- Ayarları Sıfırla -->
+        <div class="setting-group" style="border-bottom:none; margin-bottom:0; padding-bottom:0;">
+          <div class="setting-meta">
+            <label class="setting-title" id="lbl_reset_title"></label>
+            <p class="setting-desc" id="desc_reset"></p>
+          </div>
+          <button class="btn-secondary" id="resetSettingsBtn"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: PRIVACY POLICY -->
+    <div class="tab-pane" id="tab-privacy">
+      <div class="privacy-card">
+        <div class="privacy-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span id="priv_badge"></span>
+        </div>
+        <h3 class="privacy-heading" id="priv_title"></h3>
+        <p class="privacy-text" id="priv_p1"></p>
+
+        <div class="privacy-features">
+          <div class="priv-item">
+            <span class="priv-check">&#10003;</span>
+            <span id="priv_f1"></span>
+          </div>
+          <div class="priv-item">
+            <span class="priv-check">&#10003;</span>
+            <span id="priv_f2"></span>
+          </div>
+          <div class="priv-item">
+            <span class="priv-check">&#10003;</span>
+            <span id="priv_f3"></span>
+          </div>
+          <div class="priv-item">
+            <span class="priv-check">&#10003;</span>
+            <span id="priv_f4"></span>
+          </div>
+        </div>
+        <p class="privacy-footer-note" id="priv_note"></p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span id="footer_hint"></span>
+      <span class="version">v1.0.0</span>
+    </footer>
+
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

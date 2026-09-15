@@ -1,0 +1,23 @@
+﻿{
+  "ext_name":          { "message": "PassGen - Generador de Contrase\u00f1as" },
+  "ext_description":   { "message": "Generador seguro de contrase\u00f1as con soporte de men\u00fa contextual." },
+  "ctx_menu_generate": { "message": "Generar Contrase\u00f1a" },
+  "brand_tagline":     { "message": "Generador de Contrase\u00f1as" },
+  "pwd_placeholder":   { "message": "Haz clic en Generar para crear una contrase\u00f1a" },
+  "btn_copy_title":    { "message": "Copiar al portapapeles" },
+  "lbl_length":        { "message": "Longitud" },
+  "lbl_char_types":    { "message": "Tipos de Caracteres" },
+  "opt_uppercase":     { "message": "May\u00fasculas (A-Z)" },
+  "opt_lowercase":     { "message": "Min\u00fasculas (a-z)" },
+  "opt_numbers":       { "message": "N\u00fameros (0-9)" },
+  "opt_symbols":       { "message": "S\u00edmbolos (!@#$)" },
+  "btn_generate":      { "message": "Generar Contrase\u00f1a" },
+  "notice_copied":     { "message": "Copiado al portapapeles" },
+  "footer_hint":       { "message": "El men\u00fa contextual usa esta configuraci\u00f3n" },
+  "toast_title":       { "message": "Contrase\u00f1a Generada" },
+  "toast_sub":         { "message": "Copiado al portapapeles." },
+  "strength_weak":     { "message": "D\u00e9bil" },
+  "strength_fair":     { "message": "Regular" },
+  "strength_strong":   { "message": "Fuerte" },
+  "strength_vstrong":  { "message": "Muy Fuerte" }
+}

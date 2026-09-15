@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "PassGen",
+  "description": "Secure password generator for Chrome, Brave, Edge and all Chromium-based browsers. Right-click on password fields to generate instantly.",
+  "version": "1.0.0",
+  "default_locale": "en",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting",
+    "storage",
+    "clipboardWrite"
+  ],
+  "commands": {
+    "generate-password": {
+      "suggested_key": { "default": "Alt+Shift+G" },
+      "description": "Generate and copy a password"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "PassGen"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

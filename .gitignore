@@ -1,0 +1,8 @@
+﻿node_modules/
+dist/
+passgen_private_key.pem
+*.pem
+*.crx
+.DS_Store
+Thumbs.db
+passgen_store.zip

@@ -1,0 +1,65 @@
+{
+  "ext_name": {
+    "message": "PassGen - Şifre Üretici"
+  },
+  "ext_description": {
+    "message": "Güvenli şifre üretici. Sağ tık menüsü ile anlık güçlü şifre oluşturun."
+  },
+  "ctx_menu_generate": {
+    "message": "Şifre Üret"
+  },
+  "brand_tagline": {
+    "message": "Şifre Üretici"
+  },
+  "pwd_placeholder": {
+    "message": "Şifre oluşturmak için Üret’e tıklayın"
+  },
+  "btn_copy_title": {
+    "message": "Panoya kopyala"
+  },
+  "lbl_length": {
+    "message": "Uzunluk"
+  },
+  "lbl_char_types": {
+    "message": "Karakter Türleri"
+  },
+  "opt_uppercase": {
+    "message": "Büyük Harf (A-Z)"
+  },
+  "opt_lowercase": {
+    "message": "Küçük Harf (a-z)"
+  },
+  "opt_numbers": {
+    "message": "Rakamlar (0-9)"
+  },
+  "opt_symbols": {
+    "message": "Semboller (!@#$)"
+  },
+  "btn_generate": {
+    "message": "Şifre Üret"
+  },
+  "notice_copied": {
+    "message": "Panoya kopyalandı"
+  },
+  "footer_hint": {
+    "message": "Sağ tık menüsü bu ayarları kullanır"
+  },
+  "toast_title": {
+    "message": "Şifre Oluşturuldu"
+  },
+  "toast_sub": {
+    "message": "Panoya kopyalandı."
+  },
+  "strength_weak": {
+    "message": "Zayıf"
+  },
+  "strength_fair": {
+    "message": "Orta"
+  },
+  "strength_strong": {
+    "message": "Güçlü"
+  },
+  "strength_vstrong": {
+    "message": "Çok Güçlü"
+  }
+}
