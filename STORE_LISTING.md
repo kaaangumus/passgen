@@ -1,4 +1,4 @@
-﻿# PassGen - Chrome Web Store Mağaza Bilgileri
+# PassGen - Chrome Web Store Mağaza Bilgileri
 
 Chrome Web Store Developer Console'a (`https://chromewebstore.google.com/devconsole`) girdiğinizde bu bilgileri ilgili kutucuklara kopyalayıp yapıştırabilirsiniz.
 
@@ -78,7 +78,7 @@ Store Console'da "Privacy" sekmesinde sorulacak sorulara verilecek yanıtlar:
 - **Data Usage:**
   - "Do you collect user data?": **NO** (Tüm veri toplama kutucukları işaretlenmeyecek - No data collected).
 - **Privacy Policy URL:**
-  - `privacy-policy.html` dosyasını GitHub Pages veya kişisel sitenize yükleyip o linki vereceksiniz (Örn: `https://kullaniciadiniz.github.io/passgen/privacy-policy.html`).
+  - `https://kaangumus.ninja/passgen/` (veya `https://kaaangumus.github.io/passgen/`)
 
 ---
 
