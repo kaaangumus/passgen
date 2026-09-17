@@ -56,7 +56,22 @@ const LANGS = {
     priv_f2:"Sunucu bağlantısı yok: Eklenti tamamen çevrimdışı çalışır.",
     priv_f3:"Kriptografik güvenlik: Tarayıcının yerel crypto motoru kullanılır.",
     priv_f4:"Yerel depolama: Geçmiş ve ayarlar yalnızca kendi cihazınızda kalır.",
-    priv_note:"Bu eklenti açık kaynak kodlu ve tamamen ücretsizdir."
+    priv_note:"Bu eklenti açık kaynak kodlu ve tamamen ücretsizdir.",
+    mode_token:"Token 👑",
+    lbl_token_format:"Format",
+    desc_token_locked:"👑 Bu format PassGen PRO geliştirici özelliğidir.",
+    btn_unlock_pro:"PRO ile Aç",
+    desc_pro:"Geliştirici araçları (UUID, Hex Token, Base64) ve öncelikli özellikler.",
+    btn_get_pro:"PRO Al ($4.99)",
+    lbl_cloud_sync:"🔐 Bulut Şifre Yöneticisi",
+    desc_cloud_sync:"Şifrelerinizi telefon ve PC'lerinizde güvenle senkronize edin.",
+    btn_partner:"Önerilenler →",
+    lbl_support:"☕ Geliştiriciye Destek",
+    desc_support:"Eklentiyi beğendiyseniz bir kahve ısmarlayabilirsiniz.",
+    btn_coffee:"Kahve Ismarla",
+    pro_key_ph:"Lisans Anahtarı (örn: PG-PRO-...)",
+    btn_activate_pro:"Aktif Et",
+    pro_invalid_key:"Geçersiz lisans anahtarı. Lütfen kontrol edin."
   },
   en: {
     _name:"English", brand_tagline:"Password Generator",
@@ -103,7 +118,22 @@ const LANGS = {
     priv_f2:"No server connection: Operates fully offline without external calls.",
     priv_f3:"Cryptographic engine: Powered by browser's native crypto API.",
     priv_f4:"Local-only storage: History and settings never leave your device.",
-    priv_note:"This extension is free, open-source, and privacy-first."
+    priv_note:"This extension is free, open-source, and privacy-first.",
+    mode_token:"Token 👑",
+    lbl_token_format:"Format",
+    desc_token_locked:"👑 This format is a PassGen PRO feature.",
+    btn_unlock_pro:"Unlock with PRO",
+    desc_pro:"Developer tools (UUID, Hex Token, Base64) & priority features.",
+    btn_get_pro:"Get PRO ($4.99)",
+    lbl_cloud_sync:"🔐 Cloud Password Sync",
+    desc_cloud_sync:"Securely sync your passwords across phones & computers.",
+    btn_partner:"Explore →",
+    lbl_support:"☕ Support Developer",
+    desc_support:"If you enjoy PassGen, consider buying a coffee.",
+    btn_coffee:"Buy Coffee",
+    pro_key_ph:"License Key (e.g. PG-PRO-...)",
+    btn_activate_pro:"Activate",
+    pro_invalid_key:"Invalid license key. Please check your key."
   },
   es: {
     _name:"Español", brand_tagline:"Generador de Contraseñas",
@@ -150,7 +180,22 @@ const LANGS = {
     priv_f2:"Sin servidores externos: Funciona completamente sin conexión.",
     priv_f3:"Seguridad criptográfica nativa del navegador.",
     priv_f4:"Almacenamiento 100% local en su dispositivo.",
-    priv_note:"Extensión gratuita y de código abierto."
+    priv_note:"Extensión gratuita y de código abierto.",
+    mode_token:"Token 👑",
+    lbl_token_format:"Formato",
+    desc_token_locked:"👑 Función de PassGen PRO.",
+    btn_unlock_pro:"Desbloquear con PRO",
+    desc_pro:"Herramientas para desarrolladores (UUID, Hex, Base64).",
+    btn_get_pro:"Obtener PRO ($4.99)",
+    lbl_cloud_sync:"🔐 Sincronización en la Nube",
+    desc_cloud_sync:"Guarde contraseñas de forma segura en todos sus dispositivos.",
+    btn_partner:"Explorar →",
+    lbl_support:"☕ Apoyar al Desarrollador",
+    desc_support:"Si te gusta PassGen, puedes invitarme a un café.",
+    btn_coffee:"Comprar Café",
+    pro_key_ph:"Clave de licencia (ej: PG-PRO-...)",
+    btn_activate_pro:"Activar",
+    pro_invalid_key:"Clave de licencia no válida."
   },
   fr: {
     _name:"Français", brand_tagline:"Générateur de Mots de Passe",
@@ -197,7 +242,22 @@ const LANGS = {
     priv_f2:"Aucune connexion à un serveur distant.",
     priv_f3:"Chiffrement cryptographique natif et sécurisé.",
     priv_f4:"Données stockées uniquement sur votre appareil.",
-    priv_note:"Extension gratuite et open-source."
+    priv_note:"Extension gratuite et open-source.",
+    mode_token:"Token 👑",
+    lbl_token_format:"Format",
+    desc_token_locked:"👑 Fonctionnalité PassGen PRO.",
+    btn_unlock_pro:"Débloquer avec PRO",
+    desc_pro:"Outils de développement (UUID, Hex Token, Base64).",
+    btn_get_pro:"Obtenir PRO (4.99$)",
+    lbl_cloud_sync:"🔐 Gestionnaire Cloud",
+    desc_cloud_sync:"Synchronisez vos mots de passe en toute sécurité.",
+    btn_partner:"Découvrir →",
+    lbl_support:"☕ Soutenir le Développeur",
+    desc_support:"Si vous aimez PassGen, offrez-moi un café.",
+    btn_coffee:"Offrir un café",
+    pro_key_ph:"Clé de licence (ex: PG-PRO-...)",
+    btn_activate_pro:"Activer",
+    pro_invalid_key:"Clé de licence invalide."
   },
   ru: {
     _name:"Русский", brand_tagline:"Генератор паролей",
@@ -244,7 +304,22 @@ const LANGS = {
     priv_f2:"Никаких внешних серверов: полная работа офлайн.",
     priv_f3:"Криптографическая безопасность встроенного API.",
     priv_f4:"История хранится только на вашем устройстве.",
-    priv_note:"Бесплатное расширение с открытым исходным кодом."
+    priv_note:"Бесплатное расширение с открытым исходным кодом.",
+    mode_token:"Токен 👑",
+    lbl_token_format:"Формат",
+    desc_token_locked:"👑 Функция PassGen PRO.",
+    btn_unlock_pro:"Разблокировать PRO",
+    desc_pro:"Инструменты разработчика (UUID, Hex, Base64).",
+    btn_get_pro:"Купить PRO ($4.99)",
+    lbl_cloud_sync:"🔐 Облачный менеджер",
+    desc_cloud_sync:"Безопасная синхронизация паролей на всех устройствах.",
+    btn_partner:"Подробнее →",
+    lbl_support:"☕ Поддержать автора",
+    desc_support:"Если вам нравится PassGen, угостите меня кофе.",
+    btn_coffee:"Угостить кофе",
+    pro_key_ph:"Лицензионный ключ (напр: PG-PRO-...)",
+    btn_activate_pro:"Активировать",
+    pro_invalid_key:"Неверный лицензионный ключ."
   },
   zh: {
     _name:"中文", brand_tagline:"密码生成器",
@@ -291,7 +366,22 @@ const LANGS = {
     priv_f2:"无需网络：全离线运行，不连接外部服务器。",
     priv_f3:"原生安全密码学随机算法。",
     priv_f4:"所有配置与历史记录仅保存在本地设备上。",
-    priv_note:"本扩展完全免费且开源。"
+    priv_note:"本扩展完全免费且开源。",
+    mode_token:"令牌 👑",
+    lbl_token_format:"格式",
+    desc_token_locked:"👑 此格式属于 PassGen PRO 专业版功能。",
+    btn_unlock_pro:"解锁 PRO",
+    desc_pro:"开发者工具（UUID、Hex密钥、Base64）及专属特性。",
+    btn_get_pro:"获取 PRO ($4.99)",
+    lbl_cloud_sync:"🔐 云端密码管理器",
+    desc_cloud_sync:"在手机与电脑间安全同步您的密码。",
+    btn_partner:"查看推荐 →",
+    lbl_support:"☕ 支持开发者",
+    desc_support:"如果您喜欢 PassGen，请作者喝杯咖啡吧。",
+    btn_coffee:"请喝咖啡",
+    pro_key_ph:"授权密钥（例如：PG-PRO-...）",
+    btn_activate_pro:"激活",
+    pro_invalid_key:"授权密钥无效，请核对后重试。"
   }
 };
 
@@ -327,7 +417,9 @@ function applyLang(lang) {
     "lbl_hist_limit", "desc_hist_limit", "lbl_show_toast", "desc_show_toast",
     "lbl_reset_title", "desc_reset",
     "priv_badge", "priv_title", "priv_p1",
-    "priv_f1", "priv_f2", "priv_f3", "priv_f4", "priv_note"
+    "priv_f1", "priv_f2", "priv_f3", "priv_f4", "priv_note",
+    "mode_token", "lbl_token_format", "desc_token_locked",
+    "desc_pro", "lbl_cloud_sync", "desc_cloud_sync", "lbl_support", "desc_support"
   ];
   ids.forEach(k => {
     const el = document.getElementById(k);
@@ -339,6 +431,26 @@ function applyLang(lang) {
 
   const resetBtn = document.getElementById("resetSettingsBtn");
   if (resetBtn) resetBtn.textContent = t("btn_reset");
+
+  const getProBtn = document.getElementById("btnGetPro");
+  if (getProBtn) getProBtn.textContent = t("btn_get_pro");
+
+  const partnerBtn = document.getElementById("btnPartner");
+  if (partnerBtn) partnerBtn.textContent = t("btn_partner");
+
+  const coffeeBtn = document.getElementById("btnCoffee");
+  if (coffeeBtn) coffeeBtn.textContent = t("btn_coffee");
+
+  const actBtn = document.getElementById("btnActivatePro");
+  if (actBtn) actBtn.textContent = t("btn_activate_pro");
+
+  const unlockBtn = document.getElementById("btnUnlockPro");
+  if (unlockBtn) unlockBtn.textContent = t("btn_unlock_pro");
+
+  const proInput = document.getElementById("proKeyInput");
+  if (proInput) proInput.placeholder = t("pro_key_ph");
+
+  updateProUI();
 
   if (elGenBtn) elGenBtn.textContent = t("btn_generate");
 
@@ -378,12 +490,15 @@ const DEFAULTS = {
   separator: "-",
   titleCase: true,
   pinDigits: 6,
+  tokenFormat: "uuid",
   enableHistory: true,
   maskDefault: false,
   autoClean: "never",
   histLimit: 10,
   showToast: true,
-  lang: null
+  lang: null,
+  isPro: false,
+  proKey: ""
 };
 
 function rand(max) {
@@ -393,6 +508,28 @@ function rand(max) {
 }
 
 function generate(opts) {
+  if (opts.mode === "token") {
+    const fmt = opts.tokenFormat || "uuid";
+    if (fmt === "uuid") {
+      return typeof crypto.randomUUID === "function"
+        ? crypto.randomUUID()
+        : "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
+            const r = rand(16);
+            return (c === "x" ? r : (r & 0x3 | 0x8)).toString(16);
+          });
+    }
+    if (fmt === "hex64") {
+      const bytes = new Uint8Array(32);
+      crypto.getRandomValues(bytes);
+      return Array.from(bytes, b => b.toString(16).padStart(2, "0")).join("");
+    }
+    if (fmt === "base64") {
+      const bytes = new Uint8Array(24);
+      crypto.getRandomValues(bytes);
+      return btoa(String.fromCharCode.apply(null, bytes));
+    }
+  }
+
   if (opts.mode === "pin") {
     const digits = Math.max(4, Math.min(12, opts.pinDigits || 6));
     let res = "";
@@ -438,6 +575,7 @@ function generate(opts) {
 }
 
 function calcCrackTime(pwd, opts) {
+  if (opts.mode === "token") return t("crack_centuries");
   let pool = 26;
   if (opts.mode === "pin") {
     pool = 10;
@@ -465,6 +603,9 @@ function calcCrackTime(pwd, opts) {
 }
 
 function strengthInfo(pwd, mode) {
+  if (mode === "token") {
+    return { key:"strength_vstrong", pct:100, color:"#10b981" };
+  }
   if (mode === "pin") {
     if (pwd.length <= 4) return { key:"strength_weak",   pct:25,  color:"#ef4444" };
     if (pwd.length <= 6) return { key:"strength_fair",   pct:50,  color:"#f59e0b" };
@@ -628,6 +769,30 @@ let currentMode     = "random";
 let currentSep      = "-";
 let noticeTimer     = null;
 let currentOpts     = {};
+let isPro           = false;
+let currentTokenFmt = "uuid";
+
+function updateProUI() {
+  const badge = $("proBadge");
+  const banner = $("tokenLockedBanner");
+  const proRow = $("proInputRow");
+  const getProBtn = $("btnGetPro");
+  if (badge) {
+    if (isPro) {
+      badge.textContent = "PRO ✓";
+      badge.classList.add("active");
+      if (proRow) proRow.style.display = "none";
+      if (getProBtn) getProBtn.style.display = "none";
+      if (banner) banner.style.display = "none";
+    } else {
+      badge.textContent = "Free";
+      badge.classList.remove("active");
+      if (proRow) proRow.style.display = "flex";
+      if (getProBtn) getProBtn.style.display = "inline-block";
+      if (banner && currentMode === "token") banner.style.display = "block";
+    }
+  }
+}
 
 function getOpts() {
   return {
@@ -642,11 +807,13 @@ function getOpts() {
     separator:     currentSep,
     titleCase:     elTitleCase.checked,
     pinDigits:     parseInt(elPinSlider.value),
+    tokenFormat:   currentTokenFmt,
     enableHistory: elEnableHist.checked,
     maskDefault:   elMaskDefault.checked,
     autoClean:     elAutoClean.value,
     histLimit:     parseInt(elHistLimit.value) || 10,
-    showToast:     elShowToast.checked
+    showToast:     elShowToast.checked,
+    isPro:         isPro
   };
 }
 
@@ -693,6 +860,10 @@ function copyPwd() {
 
 function doGenerate() {
   currentOpts = getOpts();
+  if (currentMode === "token" && !isPro) {
+    render("PRO-PREVIEW-••••••••");
+    return;
+  }
   const pwd = generate(currentOpts);
   render(pwd);
   saveOpts(currentOpts);
@@ -709,18 +880,52 @@ document.querySelectorAll(".mode-btn").forEach(btn => {
     $("panel-random").style.display      = (currentMode === "random") ? "block" : "none";
     $("panel-passphrase").style.display  = (currentMode === "passphrase") ? "block" : "none";
     $("panel-pin").style.display         = (currentMode === "pin") ? "block" : "none";
+    $("panel-token").style.display       = (currentMode === "token") ? "block" : "none";
+
+    const banner = $("tokenLockedBanner");
+    if (banner) {
+      banner.style.display = (currentMode === "token" && !isPro) ? "block" : "none";
+    }
 
     doGenerate();
   });
 });
 
-document.querySelectorAll(".pill-btn").forEach(btn => {
+document.querySelectorAll(".pill-btn:not(.token-pill)").forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelectorAll(".pill-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".pill-btn:not(.token-pill)").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
     currentSep = btn.getAttribute("data-sep");
     doGenerate();
   });
+});
+
+document.querySelectorAll(".token-pill").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".token-pill").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentTokenFmt = btn.getAttribute("data-token");
+    doGenerate();
+  });
+});
+
+$("btnActivatePro")?.addEventListener("click", () => {
+  const inp = $("proKeyInput");
+  const key = (inp?.value || "").trim().toUpperCase();
+  if (key.startsWith("PG-PRO-") || key.startsWith("PRO-") || key === "PASSGENPRO" || key.length >= 8) {
+    isPro = true;
+    chrome.storage.sync.set({ isPro: true, proKey: key });
+    updateProUI();
+    showNotice();
+    if (currentMode === "token") doGenerate();
+  } else {
+    alert(t("pro_invalid_key"));
+  }
+});
+
+$("btnUnlockPro")?.addEventListener("click", () => {
+  document.querySelector("[data-tab='tab-settings']")?.click();
+  $("proKeyInput")?.focus();
 });
 
 // ── Tab Navigasyonu ─────────────────────────────────────────────────────────
@@ -832,13 +1037,19 @@ chrome.storage.sync.get(DEFAULTS, stored => {
   const lang = stored.lang || detectBrowserLang();
 
   currentMode = stored.mode || "random";
+  isPro = stored.isPro || false;
+  currentTokenFmt = stored.tokenFormat || "uuid";
+  document.querySelectorAll(".token-pill").forEach(b => b.classList.toggle("active", b.getAttribute("data-token") === currentTokenFmt));
   document.querySelectorAll(".mode-btn").forEach(b => b.classList.toggle("active", b.getAttribute("data-mode") === currentMode));
   $("panel-random").style.display      = (currentMode === "random") ? "block" : "none";
   $("panel-passphrase").style.display  = (currentMode === "passphrase") ? "block" : "none";
   $("panel-pin").style.display         = (currentMode === "pin") ? "block" : "none";
+  $("panel-token").style.display       = (currentMode === "token") ? "block" : "none";
+  if ($("proKeyInput") && stored.proKey) $("proKeyInput").value = stored.proKey;
+  updateProUI();
 
   currentSep = stored.separator || "-";
-  document.querySelectorAll(".pill-btn").forEach(b => b.classList.toggle("active", b.getAttribute("data-sep") === currentSep));
+  document.querySelectorAll(".pill-btn:not(.token-pill)").forEach(b => b.classList.toggle("active", b.getAttribute("data-sep") === currentSep));
 
   elSlider.value = stored.length;
   elLenVal.textContent = stored.length;

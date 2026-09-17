@@ -29,6 +29,7 @@ const DEFAULT_OPTIONS = {
   separator: "-",
   titleCase: true,
   pinDigits: 6,
+  tokenFormat: "uuid",
   enableHistory: true
 };
 
@@ -59,6 +60,28 @@ function generatePassword(options) {
       words.push(w);
     }
     return words.join(sep);
+  }
+
+  if (opts.mode === "token") {
+    const fmt = opts.tokenFormat || "uuid";
+    if (fmt === "uuid") {
+      return typeof crypto.randomUUID === "function"
+        ? crypto.randomUUID()
+        : "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
+            const r = getRandomInt(16);
+            return (c === "x" ? r : (r & 0x3 | 0x8)).toString(16);
+          });
+    }
+    if (fmt === "hex64") {
+      const bytes = new Uint8Array(32);
+      crypto.getRandomValues(bytes);
+      return Array.from(bytes, b => b.toString(16).padStart(2, "0")).join("");
+    }
+    if (fmt === "base64") {
+      const bytes = new Uint8Array(24);
+      crypto.getRandomValues(bytes);
+      return btoa(String.fromCharCode.apply(null, bytes));
+    }
   }
 
   const excl = new Set((opts.exclude || "").split(""));

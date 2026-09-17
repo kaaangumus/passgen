@@ -47,6 +47,7 @@
         <button class="mode-btn active" data-mode="random" id="mode_random"></button>
         <button class="mode-btn" data-mode="passphrase" id="mode_passphrase"></button>
         <button class="mode-btn" data-mode="pin" id="mode_pin"></button>
+        <button class="mode-btn" data-mode="token" id="mode_token">Token 👑</button>
       </div>
 
       <!-- Password Display -->
@@ -160,6 +161,22 @@
         <div class="range-marks"><span>4</span><span>12</span></div>
       </section>
 
+      <!-- Panel: TOKEN / DEV SETTINGS (PRO) -->
+      <section class="settings-section" id="panel-token" style="display:none">
+        <div class="setting-row">
+          <label class="setting-label" id="lbl_token_format">Format</label>
+        </div>
+        <div class="pill-group" style="grid-template-columns: 1fr 1fr 1fr;">
+          <button class="pill-btn token-pill active" data-token="uuid">UUID v4</button>
+          <button class="pill-btn token-pill" data-token="hex64">Hex (64)</button>
+          <button class="pill-btn token-pill" data-token="base64">Base64</button>
+        </div>
+        <div class="pro-locked-banner" id="tokenLockedBanner" style="display:none;">
+          <div class="pro-lock-text" id="desc_token_locked">👑 PassGen PRO geliştirici formatıdır.</div>
+          <button class="btn-pro-unlock" id="btnUnlockPro">PRO ile Aç</button>
+        </div>
+      </section>
+
       <!-- Generate Button -->
       <div class="action-section">
         <button class="btn-primary" id="generateBtn">Şifre Üret</button>
@@ -251,6 +268,42 @@
             <p class="setting-desc" id="desc_reset"></p>
           </div>
           <button class="btn-secondary" id="resetSettingsBtn"></button>
+        </div>
+      </div>
+
+      <!-- PassGen PRO & License Card -->
+      <div class="settings-card pro-card">
+        <div class="setting-group" style="border-bottom:none; margin-bottom:8px; padding-bottom:0;">
+          <div class="setting-meta">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="setting-title" style="color:#c084fc; font-weight:700;">PassGen PRO</span>
+              <span class="badge-pro" id="proBadge">Free</span>
+            </div>
+            <p class="setting-desc" id="desc_pro">Geliştirici araçları (UUID, Hex Token, Base64) ve öncelikli özellikler.</p>
+          </div>
+          <a href="https://kaangumus.ninja/passgen/pro.html" target="_blank" class="btn-upgrade-pro" id="btnGetPro">PRO Al ($4.99)</a>
+        </div>
+        <div class="pro-input-row" id="proInputRow">
+          <input type="text" class="exclude-input" id="proKeyInput" placeholder="Lisans Anahtarı (örn: PG-PRO-...)" style="margin:0; font-size:11px;" />
+          <button class="btn-secondary" id="btnActivatePro" style="width:auto; padding:0 12px; font-size:11px;">Aktif Et</button>
+        </div>
+      </div>
+
+      <!-- Partner & Support Card -->
+      <div class="settings-card partner-card">
+        <div class="setting-group">
+          <div class="setting-meta">
+            <label class="setting-title" id="lbl_cloud_sync">🔐 Bulut Şifre Yöneticisi</label>
+            <p class="setting-desc" id="desc_cloud_sync">Şifrelerinizi telefon ve PC'lerinizde güvenle senkronize edin.</p>
+          </div>
+          <a href="https://kaangumus.ninja/passgen/recommended.html" target="_blank" class="btn-partner" id="btnPartner">Önerilenler →</a>
+        </div>
+        <div class="setting-group" style="border-bottom:none; margin-bottom:0; padding-bottom:0;">
+          <div class="setting-meta">
+            <label class="setting-title" id="lbl_support">☕ Geliştiriciye Destek</label>
+            <p class="setting-desc" id="desc_support">Eklentiyi beğendiyseniz bir kahve ısmarlayabilirsiniz.</p>
+          </div>
+          <a href="https://buymeacoffee.com/kaangumus" target="_blank" class="btn-coffee" id="btnCoffee">Kahve Ismarla</a>
         </div>
       </div>
     </div>
