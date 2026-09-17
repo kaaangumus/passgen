@@ -490,8 +490,6 @@ function strengthInfo(pwd, mode) {
 }
 
 // ── Geçmiş Yönetimi (Zaman ve Aç/Kapa Korumalı) ─────────────────────────────
-let history = [];
-
 function cleanExpiredHistory(items, autoCleanSetting) {
   if (!Array.isArray(items)) return [];
   const normalized = items.map(item => typeof item === "string" ? { pwd: item, time: Date.now() } : item);
