@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Support PassGen – Developer Support & Donations</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0b0f17;
+      color: #e6edf3;
+      line-height: 1.6;
+      padding: 50px 20px;
+    }
+    .wrap { max-width: 680px; margin: 0 auto; }
+    .header { text-align: center; margin-bottom: 40px; }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 32px;
+      font-weight: 800;
+      color: #10b981;
+      margin-bottom: 8px;
+    }
+    .tagline { color: #94a3b8; font-size: 15px; max-width: 500px; margin: 0 auto; }
+    .card {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .card:hover { border-color: #374151; }
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #f9fafb;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-monero {
+      background: rgba(255, 102, 0, 0.15);
+      border: 1px solid rgba(255, 102, 0, 0.4);
+      color: #ff6600;
+    }
+    .badge-github {
+      background: rgba(148, 163, 184, 0.15);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: #cbd5e1;
+    }
+    .badge-coffee {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #f59e0b;
+    }
+    .desc { color: #8b949e; font-size: 14px; margin-bottom: 16px; }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-github { background: #24292f; color: #ffffff; border: 1px solid #374151; }
+    .btn-coffee { background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; }
+    .btn-pro { background: linear-gradient(135deg, #7c3aed, #9333ea); color: #fff; }
+    .crypto-box {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .crypto-addr {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      color: #ff6600;
+      word-break: break-all;
+    }
+    .copy-btn {
+      background: #ff6600;
+      color: #ffffff;
+      border: none;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .copy-btn:hover { opacity: 0.9; }
+    .toast {
+      display: none;
+      color: #10b981;
+      font-size: 12px;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+    footer { text-align: center; color: #484f58; font-size: 12px; margin-top: 50px; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="logo">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+      Support PassGen
+    </div>
+    <p class="tagline">PassGen is 100% free, offline, and open-source. Support ongoing development, security audits, and new features!</p>
+  </div>
+
+  <!-- Channel 1: Monero (XMR) Privacy Donation -->
+  <div class="card" style="border-color: rgba(255, 102, 0, 0.4);">
+    <div class="card-top">
+      <div class="card-title" style="color: #ff6600;">
+        🔒 Monero (XMR) – Anonymous & Private
+      </div>
+      <span class="badge badge-monero">Recommended</span>
+    </div>
+    <p class="desc">
+      In keeping with PassGen's privacy philosophy, you can donate directly using Monero. Fully anonymous, untraceable, and decentralised with zero middlemen.
+    </p>
+    <div class="crypto-box">
+      <span class="crypto-addr" id="xmrAddress">888tNkZrPn6JsEdBurtonXMRAddressPlaceholderReplaceWithYourRealMoneroAddressInDocsSupportHtml777</span>
+      <button class="copy-btn" id="copyXmrBtn">Copy XMR</button>
+    </div>
+    <div class="toast" id="copyToast">✓ Monero address copied to clipboard!</div>
+  </div>
+
+  <!-- Channel 2: Buy Me a Coffee -->
+  <div class="card" style="border-color: rgba(245, 158, 11, 0.35);">
+    <div class="card-top">
+      <div class="card-title" style="color: #f59e0b;">
+        ☕ Buy Me a Coffee
+      </div>
+      <span class="badge badge-coffee">Coffee & Card</span>
+    </div>
+    <p class="desc">
+      Support with a quick cup of coffee ($3-$5) using Credit Card, Apple Pay, Google Pay or PayPal.
+    </p>
+    <a href="https://buymeacoffee.com/kaangumus" target="_blank" rel="noopener noreferrer" class="btn btn-coffee">
+      Buy Me a Coffee →
+    </a>
+  </div>
+
+  <!-- Channel 3: GitHub Sponsors & Star -->
+  <div class="card">
+    <div class="card-top">
+      <div class="card-title">
+        🐙 GitHub Community Support
+      </div>
+      <span class="badge badge-github">Free Support</span>
+    </div>
+    <p class="desc">
+      Star the repository or sponsor the developer on GitHub. Community recognition helps other security-conscious developers find PassGen!
+    </p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <a href="https://github.com/kaaangumus/passgen" target="_blank" rel="noopener noreferrer" class="btn btn-github">
+        ⭐ Star on GitHub
+      </a>
+      <a href="https://github.com/kaaangumus" target="_blank" rel="noopener noreferrer" class="btn btn-github">
+        👤 Follow @kaaangumus
+      </a>
+    </div>
+  </div>
+
+  <!-- Channel 4: PassGen PRO -->
+  <div class="card" style="border-color: rgba(168, 85, 247, 0.4);">
+    <div class="card-top">
+      <div class="card-title" style="color: #c084fc;">
+        👑 Upgrade to PassGen PRO ($4.99)
+      </div>
+      <span class="badge" style="background:rgba(168,85,247,0.15); border:1px solid rgba(168,85,247,0.4); color:#c084fc;">Lifetime</span>
+    </div>
+    <p class="desc">
+      Get access to developer tools (UUID v4, 64-char API Secret Keys, and Base64 Tokens) for a single one-time payment.
+    </p>
+    <a href="./pro.html" class="btn btn-pro">
+      View PRO Features & License →
+    </a>
+  </div>
+
+  <footer>
+    <a href="./" style="color: #10b981; text-decoration: none;">← Return to Privacy Policy</a>
+    <br><br>
+    &copy; 2026 PassGen · Developed with ❤️ by Kaan Gümüş
+  </footer>
+</div>
+
+<script>
+  const copyBtn = document.getElementById("copyXmrBtn");
+  const addr = document.getElementById("xmrAddress");
+  const toast = document.getElementById("copyToast");
+  copyBtn.addEventListener("click", () => {
+    navigator.clipboard.writeText(addr.textContent.trim()).then(() => {
+      toast.style.display = "block";
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => {
+        toast.style.display = "none";
+        copyBtn.textContent = "Copy XMR";
+      }, 2500);
+    });
+  });
+</script>
+</body>
+</html>
