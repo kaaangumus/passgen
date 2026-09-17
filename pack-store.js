@@ -1,4 +1,4 @@
-﻿const fs = require("fs");
+const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
 
@@ -28,7 +28,6 @@ function copyRecursive(src, dest) {
 const includeFiles = [
   "manifest.json",
   "background.js",
-  "content.js",
   "popup",
   "icons",
   "_locales"

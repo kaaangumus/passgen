@@ -1,4 +1,4 @@
-﻿{
+{
   "ext_name":          { "message": "PassGen - G\u00e9n\u00e9rateur de Mots de Passe" },
   "ext_description":   { "message": "G\u00e9n\u00e9rateur s\u00e9curis\u00e9 de mots de passe avec support du menu contextuel." },
   "ctx_menu_generate": { "message": "G\u00e9n\u00e9rer un Mot de Passe" },

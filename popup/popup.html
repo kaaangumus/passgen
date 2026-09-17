@@ -41,16 +41,34 @@
 
     <!-- TAB 1: GENERATOR -->
     <div class="tab-pane active" id="tab-generator">
+
+      <!-- Mode Selector Pills -->
+      <div class="mode-selector">
+        <button class="mode-btn active" data-mode="random" id="mode_random"></button>
+        <button class="mode-btn" data-mode="passphrase" id="mode_passphrase"></button>
+        <button class="mode-btn" data-mode="pin" id="mode_pin"></button>
+      </div>
+
       <!-- Password Display -->
       <section class="password-section">
         <div class="password-box" id="passwordBox">
           <span class="password-display empty" id="passwordDisplay"></span>
-          <button class="btn-icon" id="copyBtn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-          </button>
+          <div class="box-actions">
+            <!-- Göz (Show/Hide) Butonu -->
+            <button class="btn-icon" id="toggleMaskBtn" title="Göster/Gizle">
+              <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+            <!-- Kopyala Butonu -->
+            <button class="btn-icon" id="copyBtn" title="Kopyala">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+          </div>
         </div>
         <!-- Güç + Kırılma Süresi -->
         <div class="strength-row">
@@ -63,9 +81,8 @@
         </div>
       </section>
 
-      <!-- Settings -->
-      <section class="settings-section">
-        <!-- Uzunluk -->
+      <!-- Panel: RANDOM SETTINGS -->
+      <section class="settings-section" id="panel-random">
         <div class="setting-row">
           <label class="setting-label" id="lbl_length"></label>
           <span class="setting-value" id="lengthValue">16</span>
@@ -73,7 +90,6 @@
         <input type="range" class="range-input" id="lengthSlider" min="8" max="64" value="16" step="1" />
         <div class="range-marks"><span>8</span><span>64</span></div>
 
-        <!-- Karakter Türleri -->
         <div class="setting-row" style="margin-top:14px">
           <label class="setting-label" id="lbl_char_types"></label>
         </div>
@@ -100,11 +116,48 @@
           </label>
         </div>
 
-        <!-- Hariç Tut -->
         <div class="setting-row" style="margin-top:12px">
           <label class="setting-label" id="lbl_exclude"></label>
         </div>
         <input type="text" class="exclude-input" id="excludeInput" maxlength="30" spellcheck="false" autocomplete="off" />
+      </section>
+
+      <!-- Panel: PASSPHRASE SETTINGS -->
+      <section class="settings-section" id="panel-passphrase" style="display:none">
+        <div class="setting-row">
+          <label class="setting-label" id="lbl_words_count"></label>
+          <span class="setting-value" id="wordsValue">4</span>
+        </div>
+        <input type="range" class="range-input" id="wordsSlider" min="3" max="7" value="4" step="1" />
+        <div class="range-marks"><span>3</span><span>7</span></div>
+
+        <div class="setting-row" style="margin-top:14px">
+          <label class="setting-label" id="lbl_separator"></label>
+        </div>
+        <div class="pill-group">
+          <button class="pill-btn active" data-sep="-">-</button>
+          <button class="pill-btn" data-sep="_">_</button>
+          <button class="pill-btn" data-sep=".">.</button>
+          <button class="pill-btn" data-sep=" ">Boşluk</button>
+        </div>
+
+        <div class="checkbox-grid" style="margin-top:12px; grid-template-columns: 1fr;">
+          <label class="checkbox-label">
+            <input type="checkbox" id="opt-titlecase" checked />
+            <span class="checkbox-box"></span>
+            <span id="opt_titlecase"></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Panel: PIN SETTINGS -->
+      <section class="settings-section" id="panel-pin" style="display:none">
+        <div class="setting-row">
+          <label class="setting-label" id="lbl_pin_digits"></label>
+          <span class="setting-value" id="pinValue">6</span>
+        </div>
+        <input type="range" class="range-input" id="pinSlider" min="4" max="12" value="6" step="1" />
+        <div class="range-marks"><span>4</span><span>12</span></div>
       </section>
 
       <!-- Generate Button -->
@@ -127,6 +180,30 @@
     <!-- TAB 3: SETTINGS -->
     <div class="tab-pane" id="tab-settings">
       <div class="settings-card">
+        <!-- Geçmişi Tamamen Etkinleştir / Kapat -->
+        <div class="setting-group">
+          <div class="setting-meta">
+            <label class="setting-title" id="lbl_enable_history"></label>
+            <p class="setting-desc" id="desc_enable_history"></p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="enableHistoryToggle" checked />
+            <span class="slider-toggle"></span>
+          </label>
+        </div>
+
+        <!-- Şifreleri Varsayılan Olarak Maskele -->
+        <div class="setting-group">
+          <div class="setting-meta">
+            <label class="setting-title" id="lbl_mask_default"></label>
+            <p class="setting-desc" id="desc_mask_default"></p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="maskDefaultToggle" />
+            <span class="slider-toggle"></span>
+          </label>
+        </div>
+
         <!-- Otomatik Geçmiş Temizleme -->
         <div class="setting-group">
           <div class="setting-meta">
@@ -215,7 +292,7 @@
     <!-- Footer -->
     <footer class="footer">
       <span id="footer_hint"></span>
-      <span class="version">v1.0.0</span>
+      <span class="version">v1.1.0</span>
     </footer>
 
   </div>

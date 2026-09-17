@@ -651,3 +651,87 @@ body {
   transform: translateX(16px);
   background-color: #ffffff;
 }
+
+/* Mode Selector (Random / Passphrase / PIN) */
+.mode-selector {
+  display: flex;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  gap: 2px;
+  margin-bottom: 12px;
+}
+.mode-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 2px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.mode-btn:hover { color: var(--text-primary); }
+.mode-btn.active {
+  background: var(--bg-raised);
+  color: var(--accent);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Box Actions (Göz + Kopyala) */
+.box-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Pill Group (Passphrase Separators) */
+.pill-group {
+  display: flex;
+  gap: 6px;
+}
+.pill-btn {
+  flex: 1;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  padding: 5px 0;
+  font-size: 11px;
+  font-family: monospace;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  text-align: center;
+}
+.pill-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+.pill-btn.active {
+  border-color: var(--accent);
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--accent);
+}
+
+/* History item actions (Mask + Copy) */
+.history-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.history-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s;
+}
+.history-btn:hover { color: var(--accent); }

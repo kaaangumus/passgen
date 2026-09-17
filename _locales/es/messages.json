@@ -1,4 +1,4 @@
-﻿{
+{
   "ext_name":          { "message": "PassGen - Generador de Contrase\u00f1as" },
   "ext_description":   { "message": "Generador seguro de contrase\u00f1as con soporte de men\u00fa contextual." },
   "ctx_menu_generate": { "message": "Generar Contrase\u00f1a" },

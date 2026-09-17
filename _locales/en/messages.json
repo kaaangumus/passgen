@@ -1,4 +1,4 @@
-﻿{
+{
   "ext_name":          { "message": "PassGen - Password Generator" },
   "ext_description":   { "message": "Secure password generator with right-click context menu. Generate strong passwords instantly." },
   "ctx_menu_generate": { "message": "Generate Password" },

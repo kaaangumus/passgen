@@ -1,8 +1,20 @@
-// ── 6 Dilli Çeviri Tablosu ──────────────────────────────────────────────────
+const WORDS_EN = [
+  "falcon","sunset","river","orbit","galaxy","breeze","summit","echo","timber",
+  "shadow","spark","frost","crystal","island","anchor","meadow","harbor","beacon",
+  "thunder","glacier","velvet","voyage","lantern","prairie","silver","canyon",
+  "compass","horizon","zenith","quantum","phoenix","nebula","aurora","cascade"
+];
+const WORDS_TR = [
+  "kartal","ruzgar","nehir","gunes","yildiz","orman","zirve","bulut","deniz",
+  "toprak","simsek","kristal","ada","liman","fener","vadi","bahar","yagmur",
+  "pusula","ufuk","ates","golge","dalga","kaplan","geyik","kus"
+];
+
 const LANGS = {
   tr: {
     _name:"Türkçe", brand_tagline:"Şifre Üretici",
     tab_btn_gen:"Şifre Üret", tab_btn_hist:"Geçmiş", tab_btn_settings:"Ayarlar", tab_btn_priv:"Gizlilik",
+    mode_random:"Rastgele", mode_passphrase:"Kelime", mode_pin:"PIN",
     pwd_placeholder:"Şifre oluşturmak için Üret'e tıklayın",
     btn_copy_title:"Panoya kopyala", lbl_length:"Uzunluk",
     lbl_char_types:"Karakter Türleri", opt_uppercase:"Büyük Harf (A-Z)",
@@ -19,6 +31,13 @@ const LANGS = {
     crack_minutes:"dakika", crack_hours:"saat",
     crack_days:"gün", crack_years:"yıl",
     crack_centuries:"yüzyıl+", kbd_hint:"Kısayol",
+    lbl_words_count:"Kelime Sayısı", lbl_separator:"Ayırıcı Karakter",
+    opt_titlecase:"Kelimelerin ilk harfini büyüt (TitleCase)",
+    lbl_pin_digits:"PIN Basamak Sayısı",
+    lbl_enable_history:"Şifre Geçmişi",
+    desc_enable_history:"Üretilen şifreleri yerel geçmiş listesinde sakla.",
+    lbl_mask_default:"Şifreleri Varsayılan Olarak Maskele",
+    desc_mask_default:"Şifreleri ekranda gizli (••••) olarak göster.",
     lbl_auto_clean:"Otomatik Geçmiş Temizleme",
     desc_auto_clean:"Belirtilen süreden eski şifreleri kendiliğinden temizler.",
     opt_clean_never:"Hiçbir zaman", opt_clean_24h:"24 saat sonra (Günlük)",
@@ -42,6 +61,7 @@ const LANGS = {
   en: {
     _name:"English", brand_tagline:"Password Generator",
     tab_btn_gen:"Generator", tab_btn_hist:"History", tab_btn_settings:"Settings", tab_btn_priv:"Privacy",
+    mode_random:"Random", mode_passphrase:"Passphrase", mode_pin:"PIN",
     pwd_placeholder:"Click Generate to create a password",
     btn_copy_title:"Copy to clipboard", lbl_length:"Length",
     lbl_char_types:"Character Types", opt_uppercase:"Uppercase (A-Z)",
@@ -58,6 +78,13 @@ const LANGS = {
     crack_minutes:"minutes", crack_hours:"hours",
     crack_days:"days", crack_years:"years",
     crack_centuries:"centuries+", kbd_hint:"Shortcut",
+    lbl_words_count:"Word Count", lbl_separator:"Separator",
+    opt_titlecase:"Capitalize words (TitleCase)",
+    lbl_pin_digits:"PIN Digits",
+    lbl_enable_history:"Password History",
+    desc_enable_history:"Keep generated passwords in local history list.",
+    lbl_mask_default:"Mask Passwords by Default",
+    desc_mask_default:"Hide passwords on screen with dots (••••).",
     lbl_auto_clean:"Auto-clear History",
     desc_auto_clean:"Automatically remove passwords older than selected period.",
     opt_clean_never:"Never", opt_clean_24h:"After 24 hours (Daily)",
@@ -81,6 +108,7 @@ const LANGS = {
   es: {
     _name:"Español", brand_tagline:"Generador de Contraseñas",
     tab_btn_gen:"Generar", tab_btn_hist:"Historial", tab_btn_settings:"Ajustes", tab_btn_priv:"Privacidad",
+    mode_random:"Aleatorio", mode_passphrase:"Frase", mode_pin:"PIN",
     pwd_placeholder:"Haz clic en Generar para crear una contraseña",
     btn_copy_title:"Copiar al portapapeles", lbl_length:"Longitud",
     lbl_char_types:"Tipos de Caracteres", opt_uppercase:"Mayúsculas (A-Z)",
@@ -97,6 +125,13 @@ const LANGS = {
     crack_minutes:"minutos", crack_hours:"horas",
     crack_days:"días", crack_years:"años",
     crack_centuries:"siglos+", kbd_hint:"Atajo",
+    lbl_words_count:"Número de Palabras", lbl_separator:"Separador",
+    opt_titlecase:"Mayúscula inicial en palabras",
+    lbl_pin_digits:"Dígitos del PIN",
+    lbl_enable_history:"Historial de Contraseñas",
+    desc_enable_history:"Guardar contraseñas en el historial local.",
+    lbl_mask_default:"Enmascarar por defecto",
+    desc_mask_default:"Ocultar contraseñas con puntos (••••).",
     lbl_auto_clean:"Limpieza Automática",
     desc_auto_clean:"Eliminar contraseñas con antigüedad superior al período.",
     opt_clean_never:"Nunca", opt_clean_24h:"Tras 24 horas (Diario)",
@@ -120,6 +155,7 @@ const LANGS = {
   fr: {
     _name:"Français", brand_tagline:"Générateur de Mots de Passe",
     tab_btn_gen:"Générateur", tab_btn_hist:"Historique", tab_btn_settings:"Paramètres", tab_btn_priv:"Confidentialité",
+    mode_random:"Aléatoire", mode_passphrase:"Phrase", mode_pin:"PIN",
     pwd_placeholder:"Cliquez sur Générer pour créer un mot de passe",
     btn_copy_title:"Copier dans le presse-papiers", lbl_length:"Longueur",
     lbl_char_types:"Types de Caractères", opt_uppercase:"Majuscules (A-Z)",
@@ -136,6 +172,13 @@ const LANGS = {
     crack_minutes:"minutes", crack_hours:"heures",
     crack_days:"jours", crack_years:"ans",
     crack_centuries:"siècles+", kbd_hint:"Raccourci",
+    lbl_words_count:"Nombre de Mots", lbl_separator:"Séparateur",
+    opt_titlecase:"Première lettre en majuscule",
+    lbl_pin_digits:"Chiffres du PIN",
+    lbl_enable_history:"Historique des Mots de Passe",
+    desc_enable_history:"Conserver les mots de passe dans l'historique.",
+    lbl_mask_default:"Masquer par défaut",
+    desc_mask_default:"Masquer avec des points (••••).",
     lbl_auto_clean:"Nettoyage Automatique",
     desc_auto_clean:"Supprimer automatiquement les anciens mots de passe.",
     opt_clean_never:"Jamais", opt_clean_24h:"Après 24 heures (Quotidien)",
@@ -159,6 +202,7 @@ const LANGS = {
   ru: {
     _name:"Русский", brand_tagline:"Генератор паролей",
     tab_btn_gen:"Генератор", tab_btn_hist:"История", tab_btn_settings:"Настройки", tab_btn_priv:"Конфиденциальность",
+    mode_random:"Случайный", mode_passphrase:"Фраза", mode_pin:"PIN",
     pwd_placeholder:"Нажмите «Создать» для генерации пароля",
     btn_copy_title:"Скопировать в буфер обмена", lbl_length:"Длина",
     lbl_char_types:"Типы символов", opt_uppercase:"Заглавные (A-Z)",
@@ -175,6 +219,13 @@ const LANGS = {
     crack_minutes:"минуты", crack_hours:"часы",
     crack_days:"дни", crack_years:"годы",
     crack_centuries:"века+", kbd_hint:"Горячая клавиша",
+    lbl_words_count:"Количество слов", lbl_separator:"Разделитель",
+    opt_titlecase:"Слова с заглавной буквы",
+    lbl_pin_digits:"Цифр в PIN-коде",
+    lbl_enable_history:"История паролей",
+    desc_enable_history:"Сохранять пароли в локальном журнале.",
+    lbl_mask_default:"Скрывать по умолчанию",
+    desc_mask_default:"Скрывать символы точками (••••).",
     lbl_auto_clean:"Автоочистка истории",
     desc_auto_clean:"Автоматически удалять пароли старше выбранного срока.",
     opt_clean_never:"Никогда", opt_clean_24h:"Через 24 часа (Ежедневно)",
@@ -198,6 +249,7 @@ const LANGS = {
   zh: {
     _name:"中文", brand_tagline:"密码生成器",
     tab_btn_gen:"生成器", tab_btn_hist:"历史记录", tab_btn_settings:"设置", tab_btn_priv:"隐私政策",
+    mode_random:"随机密码", mode_passphrase:"短语密码", mode_pin:"PIN码",
     pwd_placeholder:"点击\"生成\"以创建密码",
     btn_copy_title:"复制到剪贴板", lbl_length:"长度",
     lbl_char_types:"字符类型", opt_uppercase:"大写字母 (A-Z)",
@@ -214,6 +266,13 @@ const LANGS = {
     crack_minutes:"分钟", crack_hours:"小时",
     crack_days:"天", crack_years:"年",
     crack_centuries:"世纪+", kbd_hint:"快捷键",
+    lbl_words_count:"单词数量", lbl_separator:"分隔符",
+    opt_titlecase:"首字母大写",
+    lbl_pin_digits:"PIN位数",
+    lbl_enable_history:"保存历史记录",
+    desc_enable_history:"在本地历史中保存生成的密码。",
+    lbl_mask_default:"默认隐藏明文",
+    desc_mask_default:"以圆点(••••)遮挡显示密码。",
     lbl_auto_clean:"自动清理历史",
     desc_auto_clean:"自动清除超出指定时限的历史密码。",
     opt_clean_never:"从不", opt_clean_24h:"24小时后 (每天)",
@@ -248,6 +307,7 @@ function detectBrowserLang() {
 }
 
 let currentLang = "en";
+let history = [];
 function t(key) { return (LANGS[currentLang]||{})[key] || (LANGS.en[key]) || key; }
 
 function applyLang(lang) {
@@ -256,9 +316,13 @@ function applyLang(lang) {
 
   const ids = [
     "brand_tagline", "tab_btn_gen", "tab_btn_hist", "tab_btn_settings", "tab_btn_priv",
+    "mode_random", "mode_passphrase", "mode_pin",
     "lbl_length", "lbl_char_types", "opt_uppercase", "opt_lowercase",
-    "opt_numbers", "opt_symbols", "btn_generate", "notice_copied", "footer_hint",
+    "opt_numbers", "opt_symbols", "notice_copied", "footer_hint",
     "lbl_crack_time", "lbl_exclude", "lbl_history_title",
+    "lbl_words_count", "lbl_separator", "opt_titlecase", "lbl_pin_digits",
+    "lbl_enable_history", "desc_enable_history",
+    "lbl_mask_default", "desc_mask_default",
     "lbl_auto_clean", "desc_auto_clean", "opt_clean_never", "opt_clean_24h", "opt_clean_7d", "opt_clean_30d",
     "lbl_hist_limit", "desc_hist_limit", "lbl_show_toast", "desc_show_toast",
     "lbl_reset_title", "desc_reset",
@@ -281,6 +345,8 @@ function applyLang(lang) {
   elExclude.placeholder = t("exclude_ph");
   elCopyBtn.title = t("btn_copy_title");
   elPasswordBox.title = t("btn_copy_title");
+  elToggleMask.title = t("lbl_mask_default");
+
   if (elDisplay.classList.contains("empty")) elDisplay.textContent = t("pwd_placeholder");
   if (currentPassword) renderStrength(currentPassword);
   elLangSelect.value = lang;
@@ -293,7 +359,7 @@ function applyLang(lang) {
   chrome.runtime.sendMessage({ type: "passgen_lang", lang }).catch(()=>{});
 }
 
-// ── Şifre Üretici Motoru ────────────────────────────────────────────────────
+// ── Şifre Üretici Motoru (Random / Passphrase / PIN) ────────────────────────
 const CHARSETS = {
   uppercase:"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   lowercase:"abcdefghijklmnopqrstuvwxyz",
@@ -301,16 +367,23 @@ const CHARSETS = {
   symbols:"!@#$%^&*()_+-=[]{}|;:,.<>?"
 };
 const DEFAULTS = {
+  mode: "random",
   length: 16,
   uppercase: true,
   lowercase: true,
   numbers: true,
   symbols: true,
   exclude: "",
-  lang: null,
+  wordsCount: 4,
+  separator: "-",
+  titleCase: true,
+  pinDigits: 6,
+  enableHistory: true,
+  maskDefault: false,
   autoClean: "never",
   histLimit: 10,
-  showToast: true
+  showToast: true,
+  lang: null
 };
 
 function rand(max) {
@@ -320,6 +393,28 @@ function rand(max) {
 }
 
 function generate(opts) {
+  if (opts.mode === "pin") {
+    const digits = Math.max(4, Math.min(12, opts.pinDigits || 6));
+    let res = "";
+    for (let i = 0; i < digits; i++) res += rand(10);
+    return res;
+  }
+
+  if (opts.mode === "passphrase") {
+    const pool = (currentLang === "tr") ? WORDS_TR : WORDS_EN;
+    const count = Math.max(3, Math.min(7, opts.wordsCount || 4));
+    const sep = opts.separator !== undefined ? opts.separator : "-";
+    const words = [];
+    for (let i = 0; i < count; i++) {
+      let w = pool[rand(pool.length)];
+      if (opts.titleCase) {
+        w = w.charAt(0).toUpperCase() + w.slice(1);
+      }
+      words.push(w);
+    }
+    return words.join(sep);
+  }
+
   const excl = new Set((opts.exclude||"").split(""));
   function clean(s) { return s.split("").filter(c=>!excl.has(c)).join(""); }
   let pool="", must=[];
@@ -342,16 +437,24 @@ function generate(opts) {
   return arr.join("");
 }
 
-// ── Kırılma Süresi Hesaplama ────────────────────────────────────────────────
 function calcCrackTime(pwd, opts) {
-  let pool=0;
-  if (opts.uppercase) pool+=26;
-  if (opts.lowercase) pool+=26;
-  if (opts.numbers)   pool+=10;
-  if (opts.symbols)   pool+=30;
-  if (pool===0) pool=26;
-  const guesses = Math.pow(pool, pwd.length);
+  let pool = 26;
+  if (opts.mode === "pin") {
+    pool = 10;
+  } else if (opts.mode === "passphrase") {
+    pool = 5000;
+  } else {
+    pool = 0;
+    if (opts.uppercase) pool += 26;
+    if (opts.lowercase) pool += 26;
+    if (opts.numbers)   pool += 10;
+    if (opts.symbols)   pool += 30;
+    if (pool === 0) pool = 26;
+  }
+  const length = (opts.mode === "passphrase") ? (opts.wordsCount || 4) : pwd.length;
+  const guesses = Math.pow(pool, length);
   const seconds = guesses / 1e10;
+
   if (seconds < 1)      return t("crack_instant");
   if (seconds < 60)     return Math.round(seconds) + " " + t("crack_seconds");
   if (seconds < 3600)   return Math.round(seconds/60) + " " + t("crack_minutes");
@@ -361,26 +464,37 @@ function calcCrackTime(pwd, opts) {
   return t("crack_centuries");
 }
 
-function strengthInfo(pwd) {
-  let s=0;
-  if (pwd.length>=8)  s++; if (pwd.length>=12) s++;
-  if (pwd.length>=16) s++; if (pwd.length>=24) s++;
+function strengthInfo(pwd, mode) {
+  if (mode === "pin") {
+    if (pwd.length <= 4) return { key:"strength_weak",   pct:25,  color:"#ef4444" };
+    if (pwd.length <= 6) return { key:"strength_fair",   pct:50,  color:"#f59e0b" };
+    if (pwd.length <= 8) return { key:"strength_strong", pct:80,  color:"#10b981" };
+    return { key:"strength_vstrong", pct:100, color:"#10b981" };
+  }
+  if (mode === "passphrase") {
+    const words = pwd.split(/[-_.\s]/);
+    if (words.length <= 3) return { key:"strength_fair",   pct:50,  color:"#f59e0b" };
+    if (words.length <= 4) return { key:"strength_strong", pct:85,  color:"#10b981" };
+    return { key:"strength_vstrong", pct:100, color:"#10b981" };
+  }
+
+  let s = 0;
+  if (pwd.length >= 8)  s++; if (pwd.length >= 12) s++;
+  if (pwd.length >= 16) s++; if (pwd.length >= 24) s++;
   if (/[A-Z]/.test(pwd)) s++; if (/[a-z]/.test(pwd)) s++;
-  if (/[0-9]/.test(pwd)) s++; if (/[^A-Za-z0-9]/.test(pwd)) s+=2;
-  if (s<=3) return {key:"strength_weak",   pct:20, color:"#ef4444"};
-  if (s<=5) return {key:"strength_fair",   pct:50, color:"#f59e0b"};
-  if (s<=7) return {key:"strength_strong", pct:75, color:"#10b981"};
-  return     {key:"strength_vstrong",pct:100,color:"#10b981"};
+  if (/[0-9]/.test(pwd)) s++; if (/[^A-Za-z0-9]/.test(pwd)) s += 2;
+  if (s <= 3) return { key:"strength_weak",   pct:20,  color:"#ef4444" };
+  if (s <= 5) return { key:"strength_fair",   pct:50,  color:"#f59e0b" };
+  if (s <= 7) return { key:"strength_strong", pct:75,  color:"#10b981" };
+  return     { key:"strength_vstrong", pct:100, color:"#10b981" };
 }
 
-// ── Gelişmiş Geçmiş Yönetimi (Zaman Bazlı Otomatik Temizleme) ───────────────
-let history = []; // Elemanlar: { pwd: "...", time: 17264... }
+// ── Geçmiş Yönetimi (Zaman ve Aç/Kapa Korumalı) ─────────────────────────────
+let history = [];
 
 function cleanExpiredHistory(items, autoCleanSetting) {
   if (!Array.isArray(items)) return [];
-  // Geriye dönük uyumluluk: Eğer düz string dizisi ise objeye çevir
   const normalized = items.map(item => typeof item === "string" ? { pwd: item, time: Date.now() } : item);
-  
   if (!autoCleanSetting || autoCleanSetting === "never") return normalized;
 
   const now = Date.now();
@@ -393,6 +507,8 @@ function cleanExpiredHistory(items, autoCleanSetting) {
 }
 
 function saveHistory(pwd) {
+  if (!elEnableHist.checked) return;
+
   const limit = parseInt(elHistLimit.value) || 10;
   const newItem = { pwd, time: Date.now() };
   history = [newItem, ...history.filter(p => p.pwd !== pwd)].slice(0, limit);
@@ -406,10 +522,9 @@ function renderHistory() {
   const clearBtn = document.getElementById("clearHistoryBtn");
   if (!list || !empty) return;
 
-  // Otomatik temizleme filtresinden geçir
   history = cleanExpiredHistory(history, elAutoClean.value);
 
-  if (!history.length) {
+  if (!history.length || !elEnableHist.checked) {
     empty.style.display = "block";
     empty.textContent = t("history_empty");
     list.style.display = "none";
@@ -426,18 +541,40 @@ function renderHistory() {
     const pwd = typeof item === "string" ? item : item.pwd;
     const li = document.createElement("li");
     li.className = "history-item";
-    li.title = t("btn_copy_title");
 
     const spanPwd = document.createElement("span");
     spanPwd.className = "history-pwd";
-    spanPwd.textContent = pwd;
+    let isRowMasked = elMaskDefault.checked;
+    spanPwd.textContent = isRowMasked ? "•".repeat(Math.min(pwd.length, 14)) : pwd;
 
-    const spanCopy = document.createElement("span");
-    spanCopy.className = "history-copy";
-    spanCopy.textContent = "\u2398";
+    const actions = document.createElement("div");
+    actions.className = "history-actions";
+
+    const btnEye = document.createElement("button");
+    btnEye.className = "history-btn";
+    btnEye.title = "Göster/Gizle";
+    btnEye.textContent = isRowMasked ? "👁" : "🔒";
+    btnEye.addEventListener("click", (e) => {
+      e.stopPropagation();
+      isRowMasked = !isRowMasked;
+      spanPwd.textContent = isRowMasked ? "•".repeat(Math.min(pwd.length, 14)) : pwd;
+      btnEye.textContent = isRowMasked ? "👁" : "🔒";
+    });
+
+    const btnCopy = document.createElement("button");
+    btnCopy.className = "history-btn";
+    btnCopy.title = t("btn_copy_title");
+    btnCopy.textContent = "📋";
+    btnCopy.addEventListener("click", (e) => {
+      e.stopPropagation();
+      navigator.clipboard.writeText(pwd).then(() => showNotice());
+    });
+
+    actions.appendChild(btnEye);
+    actions.appendChild(btnCopy);
 
     li.appendChild(spanPwd);
-    li.appendChild(spanCopy);
+    li.appendChild(actions);
 
     li.addEventListener("click", () => {
       navigator.clipboard.writeText(pwd).then(() => showNotice());
@@ -457,6 +594,8 @@ const $       = id => document.getElementById(id);
 const elDisplay     = $("passwordDisplay");
 const elCopyBtn     = $("copyBtn");
 const elGenBtn      = $("generateBtn");
+const elToggleMask  = $("toggleMaskBtn");
+const elEyeIcon     = $("eyeIcon");
 const elSlider      = $("lengthSlider");
 const elLenVal      = $("lengthValue");
 const elStrFill     = $("strengthFill");
@@ -472,27 +611,44 @@ const elLangSelect  = $("langSelect");
 const elPasswordBox = $("passwordBox");
 const elExclude     = $("excludeInput");
 
-// Ayarlar sekmesi elemanları
+const elWordsSlider = $("wordsSlider");
+const elWordsVal    = $("wordsValue");
+const elTitleCase   = $("opt-titlecase");
+const elPinSlider   = $("pinSlider");
+const elPinVal      = $("pinValue");
+
+const elEnableHist  = $("enableHistoryToggle");
+const elMaskDefault = $("maskDefaultToggle");
 const elAutoClean   = $("autoCleanSelect");
 const elHistLimit   = $("histLimitSelect");
 const elShowToast   = $("showToastToggle");
 const elResetBtn    = $("resetSettingsBtn");
 
 let currentPassword = "";
-let noticeTimer = null;
-let currentOpts = {};
+let isMainMasked    = false;
+let currentMode     = "random";
+let currentSep      = "-";
+let noticeTimer     = null;
+let currentOpts     = {};
 
 function getOpts() {
   return {
-    length:    parseInt(elSlider.value),
-    uppercase: elOptU.checked,
-    lowercase: elOptL.checked,
-    numbers:   elOptN.checked,
-    symbols:   elOptS.checked,
-    exclude:   elExclude.value,
-    autoClean: elAutoClean.value,
-    histLimit: parseInt(elHistLimit.value) || 10,
-    showToast: elShowToast.checked
+    mode:          currentMode,
+    length:        parseInt(elSlider.value),
+    uppercase:     elOptU.checked,
+    lowercase:     elOptL.checked,
+    numbers:       elOptN.checked,
+    symbols:       elOptS.checked,
+    exclude:       elExclude.value,
+    wordsCount:    parseInt(elWordsSlider.value),
+    separator:     currentSep,
+    titleCase:     elTitleCase.checked,
+    pinDigits:     parseInt(elPinSlider.value),
+    enableHistory: elEnableHist.checked,
+    maskDefault:   elMaskDefault.checked,
+    autoClean:     elAutoClean.value,
+    histLimit:     parseInt(elHistLimit.value) || 10,
+    showToast:     elShowToast.checked
   };
 }
 
@@ -500,21 +656,35 @@ function saveOpts(opts) {
   chrome.storage.sync.set(opts);
 }
 
+function updateDisplayMask() {
+  if (!currentPassword) return;
+  if (isMainMasked) {
+    elDisplay.textContent = "•".repeat(Math.min(currentPassword.length, 20));
+    elEyeIcon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+  } else {
+    elDisplay.textContent = currentPassword;
+    elEyeIcon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+  }
+}
+
 function renderStrength(pwd) {
   if (!pwd) {
     elStrFill.style.width="0"; elStrText.textContent="\u2014";
     elStrText.style.color=""; elCrackRow.style.display="none"; return;
   }
-  const s=strengthInfo(pwd);
-  elStrFill.style.width=s.pct+"%"; elStrFill.style.background=s.color;
-  elStrText.textContent=t(s.key); elStrText.style.color=s.color;
-  elCrackRow.style.display="flex";
-  elCrackVal.textContent=calcCrackTime(pwd, currentOpts);
+  const s = strengthInfo(pwd, currentMode);
+  elStrFill.style.width = s.pct + "%";
+  elStrFill.style.background = s.color;
+  elStrText.textContent = t(s.key);
+  elStrText.style.color = s.color;
+  elCrackRow.style.display = "flex";
+  elCrackVal.textContent = calcCrackTime(pwd, currentOpts);
 }
 
 function render(pwd) {
-  currentPassword=pwd;
-  elDisplay.textContent=pwd; elDisplay.classList.remove("empty");
+  currentPassword = pwd;
+  elDisplay.classList.remove("empty");
+  updateDisplayMask();
   renderStrength(pwd);
 }
 
@@ -524,12 +694,36 @@ function copyPwd() {
 }
 
 function doGenerate() {
-  currentOpts=getOpts();
-  const pwd=generate(currentOpts);
+  currentOpts = getOpts();
+  const pwd = generate(currentOpts);
   render(pwd);
   saveOpts(currentOpts);
   saveHistory(pwd);
 }
+
+// ── Mod Değiştirme (Pills) ──────────────────────────────────────────────────
+document.querySelectorAll(".mode-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentMode = btn.getAttribute("data-mode");
+
+    $("panel-random").style.display      = (currentMode === "random") ? "block" : "none";
+    $("panel-passphrase").style.display  = (currentMode === "passphrase") ? "block" : "none";
+    $("panel-pin").style.display         = (currentMode === "pin") ? "block" : "none";
+
+    doGenerate();
+  });
+});
+
+document.querySelectorAll(".pill-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".pill-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentSep = btn.getAttribute("data-sep");
+    doGenerate();
+  });
+});
 
 // ── Tab Navigasyonu ─────────────────────────────────────────────────────────
 document.querySelectorAll(".tab-btn").forEach(btn => {
@@ -547,12 +741,23 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 elGenBtn.addEventListener("click", doGenerate);
 elDisplay.addEventListener("click", copyPwd);
 elCopyBtn.addEventListener("click", copyPwd);
+
+elToggleMask.addEventListener("click", (e) => {
+  e.stopPropagation();
+  isMainMasked = !isMainMasked;
+  updateDisplayMask();
+});
+
 elSlider.addEventListener("input", ()=>{ elLenVal.textContent=elSlider.value; if(currentPassword) doGenerate(); });
-[elOptU,elOptL,elOptN,elOptS].forEach(el=>el.addEventListener("change",()=>{ if(currentPassword) doGenerate(); }));
+elWordsSlider.addEventListener("input", ()=>{ elWordsVal.textContent=elWordsSlider.value; if(currentPassword) doGenerate(); });
+elPinSlider.addEventListener("input", ()=>{ elPinVal.textContent=elPinSlider.value; if(currentPassword) doGenerate(); });
+
+[elOptU,elOptL,elOptN,elOptS,elTitleCase].forEach(el=>{
+  if (el) el.addEventListener("change",()=>{ if(currentPassword) doGenerate(); });
+});
 elLangSelect.addEventListener("change", ()=>applyLang(elLangSelect.value));
 elExclude.addEventListener("input", ()=>{ if(currentPassword) doGenerate(); });
 
-// Ayarlar sekmesi olayları
 elAutoClean.addEventListener("change", () => {
   saveOpts(getOpts());
   renderHistory();
@@ -564,23 +769,48 @@ elHistLimit.addEventListener("change", () => {
   saveOpts(getOpts());
   renderHistory();
 });
-elShowToast.addEventListener("change", () => {
+elShowToast.addEventListener("change", () => saveOpts(getOpts()));
+elEnableHist.addEventListener("change", () => {
+  if (!elEnableHist.checked) {
+    history = [];
+    chrome.storage.local.remove("passgen_history");
+  }
   saveOpts(getOpts());
+  renderHistory();
+});
+elMaskDefault.addEventListener("change", () => {
+  isMainMasked = elMaskDefault.checked;
+  updateDisplayMask();
+  saveOpts(getOpts());
+  renderHistory();
 });
 
-// Sıfırlama Butonu
 elResetBtn.addEventListener("click", () => {
+  currentMode = DEFAULTS.mode;
+  document.querySelectorAll(".mode-btn").forEach(b => b.classList.toggle("active", b.getAttribute("data-mode") === "random"));
+  $("panel-random").style.display = "block";
+  $("panel-passphrase").style.display = "none";
+  $("panel-pin").style.display = "none";
+
   elSlider.value = DEFAULTS.length;
   elLenVal.textContent = DEFAULTS.length;
+  elWordsSlider.value = DEFAULTS.wordsCount;
+  elWordsVal.textContent = DEFAULTS.wordsCount;
+  elPinSlider.value = DEFAULTS.pinDigits;
+  elPinVal.textContent = DEFAULTS.pinDigits;
   elOptU.checked = DEFAULTS.uppercase;
   elOptL.checked = DEFAULTS.lowercase;
   elOptN.checked = DEFAULTS.numbers;
   elOptS.checked = DEFAULTS.symbols;
+  elTitleCase.checked = DEFAULTS.titleCase;
   elExclude.value = DEFAULTS.exclude;
+  elEnableHist.checked = DEFAULTS.enableHistory;
+  elMaskDefault.checked = DEFAULTS.maskDefault;
   elAutoClean.value = DEFAULTS.autoClean;
   elHistLimit.value = DEFAULTS.histLimit;
   elShowToast.checked = DEFAULTS.showToast;
-  
+  isMainMasked = DEFAULTS.maskDefault;
+
   saveOpts(getOpts());
   doGenerate();
 });
@@ -602,13 +832,34 @@ $("clearHistoryBtn").addEventListener("click", ()=>{
 // ── Başlatma ─────────────────────────────────────────────────────────────────
 chrome.storage.sync.get(DEFAULTS, stored => {
   const lang = stored.lang || detectBrowserLang();
+
+  currentMode = stored.mode || "random";
+  document.querySelectorAll(".mode-btn").forEach(b => b.classList.toggle("active", b.getAttribute("data-mode") === currentMode));
+  $("panel-random").style.display      = (currentMode === "random") ? "block" : "none";
+  $("panel-passphrase").style.display  = (currentMode === "passphrase") ? "block" : "none";
+  $("panel-pin").style.display         = (currentMode === "pin") ? "block" : "none";
+
+  currentSep = stored.separator || "-";
+  document.querySelectorAll(".pill-btn").forEach(b => b.classList.toggle("active", b.getAttribute("data-sep") === currentSep));
+
   elSlider.value = stored.length;
   elLenVal.textContent = stored.length;
+  elWordsSlider.value = stored.wordsCount || 4;
+  elWordsVal.textContent = stored.wordsCount || 4;
+  elPinSlider.value = stored.pinDigits || 6;
+  elPinVal.textContent = stored.pinDigits || 6;
+
   elOptU.checked = stored.uppercase;
   elOptL.checked = stored.lowercase;
   elOptN.checked = stored.numbers;
   elOptS.checked = stored.symbols;
+  elTitleCase.checked = stored.titleCase !== undefined ? stored.titleCase : true;
   elExclude.value = stored.exclude || "";
+
+  elEnableHist.checked = stored.enableHistory !== undefined ? stored.enableHistory : true;
+  elMaskDefault.checked = stored.maskDefault !== undefined ? stored.maskDefault : false;
+  isMainMasked = elMaskDefault.checked;
+
   elAutoClean.value = stored.autoClean || "never";
   elHistLimit.value = stored.histLimit || 10;
   elShowToast.checked = stored.showToast !== undefined ? stored.showToast : true;
@@ -617,11 +868,15 @@ chrome.storage.sync.get(DEFAULTS, stored => {
   elDisplay.textContent = t("pwd_placeholder");
   elDisplay.classList.add("empty");
 
-  chrome.storage.local.get({ passgen_history:[] }, local => {
-    history = cleanExpiredHistory(local.passgen_history || [], stored.autoClean);
-    chrome.storage.local.set({ passgen_history: history });
+  if (elEnableHist.checked) {
+    chrome.storage.local.get({ passgen_history:[] }, local => {
+      history = cleanExpiredHistory(local.passgen_history || [], stored.autoClean);
+      chrome.storage.local.set({ passgen_history: history });
+      renderHistory();
+    });
+  } else {
     renderHistory();
-  });
+  }
 
   doGenerate();
 });

@@ -1,4 +1,4 @@
-﻿{
+{
   "ext_name":          { "message": "PassGen - \u5bc6\u7801\u751f\u6210\u5668" },
   "ext_description":   { "message": "\u5b89\u5168\u5bc6\u7801\u751f\u6210\u5668\uff0c\u652f\u6301\u53f3\u952e\u83dc\u5355\u3002" },
   "ctx_menu_generate": { "message": "\u751f\u6210\u5bc6\u7801" },

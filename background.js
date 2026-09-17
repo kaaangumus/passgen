@@ -5,13 +5,31 @@ const CHARSETS = {
   symbols: "!@#$%^&*()_+-=[]{}|;:,.<>?"
 };
 
+const WORDS_EN = [
+  "falcon","sunset","river","orbit","galaxy","breeze","summit","echo","timber",
+  "shadow","spark","frost","crystal","island","anchor","meadow","harbor","beacon",
+  "thunder","glacier","velvet","voyage","lantern","prairie","silver","canyon",
+  "compass","horizon","zenith","quantum","phoenix","nebula","aurora","cascade"
+];
+const WORDS_TR = [
+  "kartal","ruzgar","nehir","gunes","yildiz","orman","zirve","bulut","deniz",
+  "toprak","simsek","kristal","ada","liman","fener","vadi","bahar","yagmur",
+  "pusula","ufuk","ates","golge","dalga","kaplan","geyik","kus"
+];
+
 const DEFAULT_OPTIONS = {
+  mode: "random",
   length: 16,
   uppercase: true,
   lowercase: true,
   numbers: true,
   symbols: true,
-  exclude: ""
+  exclude: "",
+  wordsCount: 4,
+  separator: "-",
+  titleCase: true,
+  pinDigits: 6,
+  enableHistory: true
 };
 
 function getRandomInt(max) {
@@ -22,6 +40,27 @@ function getRandomInt(max) {
 
 function generatePassword(options) {
   const opts = Object.assign({}, DEFAULT_OPTIONS, options);
+
+  if (opts.mode === "pin") {
+    const digits = Math.max(4, Math.min(12, opts.pinDigits || 6));
+    let res = "";
+    for (let i = 0; i < digits; i++) res += getRandomInt(10);
+    return res;
+  }
+
+  if (opts.mode === "passphrase") {
+    const pool = (opts.lang === "tr") ? WORDS_TR : WORDS_EN;
+    const count = Math.max(3, Math.min(7, opts.wordsCount || 4));
+    const sep = opts.separator !== undefined ? opts.separator : "-";
+    const words = [];
+    for (let i = 0; i < count; i++) {
+      let w = pool[getRandomInt(pool.length)];
+      if (opts.titleCase) w = w.charAt(0).toUpperCase() + w.slice(1);
+      words.push(w);
+    }
+    return words.join(sep);
+  }
+
   const excl = new Set((opts.exclude || "").split(""));
   function clean(s) { return s.split("").filter(c => !excl.has(c)).join(""); }
 
@@ -126,12 +165,18 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 
   const result = await chrome.storage.sync.get(Object.assign({ lang: null }, DEFAULT_OPTIONS));
   const opts = {
-    length:    result.length    || DEFAULT_OPTIONS.length,
-    uppercase: result.uppercase !== undefined ? result.uppercase : DEFAULT_OPTIONS.uppercase,
-    lowercase: result.lowercase !== undefined ? result.lowercase : DEFAULT_OPTIONS.lowercase,
-    numbers:   result.numbers   !== undefined ? result.numbers   : DEFAULT_OPTIONS.numbers,
-    symbols:   result.symbols   !== undefined ? result.symbols   : DEFAULT_OPTIONS.symbols,
-    exclude:   result.exclude   || ""
+    mode:          result.mode          || DEFAULT_OPTIONS.mode,
+    length:        result.length        || DEFAULT_OPTIONS.length,
+    uppercase:     result.uppercase !== undefined ? result.uppercase : DEFAULT_OPTIONS.uppercase,
+    lowercase:     result.lowercase !== undefined ? result.lowercase : DEFAULT_OPTIONS.lowercase,
+    numbers:       result.numbers   !== undefined ? result.numbers   : DEFAULT_OPTIONS.numbers,
+    symbols:       result.symbols   !== undefined ? result.symbols   : DEFAULT_OPTIONS.symbols,
+    exclude:       result.exclude       || "",
+    wordsCount:    result.wordsCount    || DEFAULT_OPTIONS.wordsCount,
+    separator:     result.separator     || DEFAULT_OPTIONS.separator,
+    titleCase:     result.titleCase !== undefined ? result.titleCase : DEFAULT_OPTIONS.titleCase,
+    pinDigits:     result.pinDigits     || DEFAULT_OPTIONS.pinDigits,
+    lang:          result.lang
   };
 
   const password   = generatePassword(opts);
@@ -141,13 +186,16 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 
   const showToast  = result.showToast !== undefined ? result.showToast : true;
   const histLimit  = parseInt(result.histLimit) || 10;
+  const canSaveHist = result.enableHistory !== undefined ? result.enableHistory : true;
 
-  // Üretilen şifreyi zaman damgasıyla geçmişe kaydet
-  chrome.storage.local.get({ passgen_history: [] }, local => {
-    const raw = (local.passgen_history || []).map(item => typeof item === "string" ? { pwd: item, time: Date.now() } : item);
-    const history = [{ pwd: password, time: Date.now() }, ...raw.filter(p => p.pwd !== password)].slice(0, histLimit);
-    chrome.storage.local.set({ passgen_history: history });
-  });
+  // Üretilen şifreyi zaman damgasıyla geçmişe kaydet (yalnızca izin verilmişse)
+  if (canSaveHist) {
+    chrome.storage.local.get({ passgen_history: [] }, local => {
+      const raw = (local.passgen_history || []).map(item => typeof item === "string" ? { pwd: item, time: Date.now() } : item);
+      const history = [{ pwd: password, time: Date.now() }, ...raw.filter(p => p.pwd !== password)].slice(0, histLimit);
+      chrome.storage.local.set({ passgen_history: history });
+    });
+  }
 
   try {
     await chrome.scripting.executeScript({
@@ -155,24 +203,43 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
       func: (pwd, title, sub, canToast) => {
         let el = window.__passgenLastTarget || document.activeElement;
         if (el && !el.matches("input, textarea, [contenteditable]")) {
-          el = el.closest("input, textarea") || el.querySelector("input, textarea") || document.activeElement;
+          el = el.closest("input, textarea") || el.querySelector("input[type='password']") || el.querySelector("input, textarea") || document.activeElement;
         }
         if (el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable)) {
-          const proto = el.tagName === "INPUT"
-            ? window.HTMLInputElement.prototype
-            : window.HTMLTextAreaElement.prototype;
+          el.focus();
+          const proto = el.tagName === "INPUT" ? window.HTMLInputElement.prototype : window.HTMLTextAreaElement.prototype;
           const nativeSetter = Object.getOwnPropertyDescriptor(proto, "value");
           if (nativeSetter) {
             nativeSetter.set.call(el, pwd);
           } else {
             el.value = pwd;
           }
+          // Tarayıcı şifre yöneticilerini ve frameworkleri (React, Vue, Angular) eksiksiz tetikle
           el.dispatchEvent(new Event("input", { bubbles: true }));
           el.dispatchEvent(new Event("change", { bubbles: true }));
+          el.dispatchEvent(new KeyboardEvent("keydown", { bubbles: true }));
+          el.dispatchEvent(new KeyboardEvent("keyup", { bubbles: true }));
+          el.blur();
+          el.focus();
         }
         navigator.clipboard.writeText(pwd).catch(() => {});
-        if (canToast && window.__passgenToast) {
-          window.__passgenToast(pwd, title, sub);
+        if (canToast) {
+          let toast = document.getElementById("passgen-toast");
+          if (!toast) {
+            const style = document.createElement("style");
+            style.textContent = "#passgen-toast{position:fixed;bottom:24px;right:24px;z-index:2147483647;background:#111827;color:#f9fafb;border:1px solid #374151;border-left:3px solid #10b981;border-radius:8px;padding:10px 16px;min-width:220px;max-width:320px;box-shadow:0 10px 25px rgba(0,0,0,0.4);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;display:flex;align-items:center;gap:10px;opacity:0;transform:translateX(110%);transition:opacity .25s ease,transform .3s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;}#passgen-toast.show{opacity:1;transform:translateX(0);}#passgen-toast svg{flex-shrink:0;width:20px;height:20px;color:#10b981;}#passgen-toast .pg-title{font-weight:600;color:#f9fafb;font-size:13px;}#passgen-toast .pg-sub{font-size:11px;color:#9ca3af;margin-top:2px;}";
+            document.documentElement.appendChild(style);
+            toast = document.createElement("div");
+            toast.id = "passgen-toast";
+            toast.innerHTML = '<svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><div class="pg-body"><div class="pg-title"></div><div class="pg-sub"></div></div>';
+            document.documentElement.appendChild(toast);
+          }
+          toast.querySelector(".pg-title").textContent = title || "Password Generated";
+          toast.querySelector(".pg-sub").textContent = sub || "Copied to clipboard.";
+          toast.classList.remove("show");
+          void toast.offsetWidth;
+          toast.classList.add("show");
+          setTimeout(() => toast.classList.remove("show"), 2600);
         }
       },
       args: [password, toastTitle, toastSub, showToast]
@@ -191,27 +258,35 @@ chrome.commands.onCommand.addListener(async (command) => {
 
   const stored = await chrome.storage.sync.get(Object.assign({ lang: null }, DEFAULT_OPTIONS));
   const opts   = {
-    length:    stored.length    || DEFAULT_OPTIONS.length,
-    uppercase: stored.uppercase !== undefined ? stored.uppercase : DEFAULT_OPTIONS.uppercase,
-    lowercase: stored.lowercase !== undefined ? stored.lowercase : DEFAULT_OPTIONS.lowercase,
-    numbers:   stored.numbers   !== undefined ? stored.numbers   : DEFAULT_OPTIONS.numbers,
-    symbols:   stored.symbols   !== undefined ? stored.symbols   : DEFAULT_OPTIONS.symbols,
-    exclude:   stored.exclude   || ""
+    mode:          stored.mode          || DEFAULT_OPTIONS.mode,
+    length:        stored.length        || DEFAULT_OPTIONS.length,
+    uppercase:     stored.uppercase !== undefined ? stored.uppercase : DEFAULT_OPTIONS.uppercase,
+    lowercase:     stored.lowercase !== undefined ? stored.lowercase : DEFAULT_OPTIONS.lowercase,
+    numbers:       stored.numbers   !== undefined ? stored.numbers   : DEFAULT_OPTIONS.numbers,
+    symbols:       stored.symbols   !== undefined ? stored.symbols   : DEFAULT_OPTIONS.symbols,
+    exclude:       stored.exclude       || "",
+    wordsCount:    stored.wordsCount    || DEFAULT_OPTIONS.wordsCount,
+    separator:     stored.separator     || DEFAULT_OPTIONS.separator,
+    titleCase:     stored.titleCase !== undefined ? stored.titleCase : DEFAULT_OPTIONS.titleCase,
+    pinDigits:     stored.pinDigits     || DEFAULT_OPTIONS.pinDigits,
+    lang:          stored.lang
   };
   const l          = getLang(stored.lang);
   const showToast  = stored.showToast !== undefined ? stored.showToast : true;
   const histLimit  = parseInt(stored.histLimit) || 10;
+  const canSaveHist = stored.enableHistory !== undefined ? stored.enableHistory : true;
 
   const password   = generatePassword(opts);
   const toastTitle = TOAST_TITLES[l] || TOAST_TITLES.en;
   const toastSub   = TOAST_SUBS[l]   || TOAST_SUBS.en;
 
-  // Üretilen şifreyi zaman damgasıyla geçmişe kaydet
-  chrome.storage.local.get({ passgen_history: [] }, local => {
-    const raw = (local.passgen_history || []).map(item => typeof item === "string" ? { pwd: item, time: Date.now() } : item);
-    const history = [{ pwd: password, time: Date.now() }, ...raw.filter(p => p.pwd !== password)].slice(0, histLimit);
-    chrome.storage.local.set({ passgen_history: history });
-  });
+  if (canSaveHist) {
+    chrome.storage.local.get({ passgen_history: [] }, local => {
+      const raw = (local.passgen_history || []).map(item => typeof item === "string" ? { pwd: item, time: Date.now() } : item);
+      const history = [{ pwd: password, time: Date.now() }, ...raw.filter(p => p.pwd !== password)].slice(0, histLimit);
+      chrome.storage.local.set({ passgen_history: history });
+    });
+  }
 
   try {
     await chrome.scripting.executeScript({
@@ -222,15 +297,35 @@ chrome.commands.onCommand.addListener(async (command) => {
           el = el.closest("input, textarea") || el.querySelector("input[type='password']") || el.querySelector("input, textarea");
         }
         if (el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable)) {
-          const proto     = el.tagName === "INPUT" ? window.HTMLInputElement.prototype : window.HTMLTextAreaElement.prototype;
+          el.focus();
+          const proto = el.tagName === "INPUT" ? window.HTMLInputElement.prototype : window.HTMLTextAreaElement.prototype;
           const nativeSetter = Object.getOwnPropertyDescriptor(proto, "value");
           if (nativeSetter) nativeSetter.set.call(el, pwd); else el.value = pwd;
-          el.dispatchEvent(new Event("input",  { bubbles: true }));
+          el.dispatchEvent(new Event("input", { bubbles: true }));
           el.dispatchEvent(new Event("change", { bubbles: true }));
+          el.dispatchEvent(new KeyboardEvent("keydown", { bubbles: true }));
+          el.dispatchEvent(new KeyboardEvent("keyup", { bubbles: true }));
+          el.blur();
+          el.focus();
         }
         navigator.clipboard.writeText(pwd).catch(() => {});
-        if (canToast && window.__passgenToast) {
-          window.__passgenToast(pwd, title, sub);
+        if (canToast) {
+          let toast = document.getElementById("passgen-toast");
+          if (!toast) {
+            const style = document.createElement("style");
+            style.textContent = "#passgen-toast{position:fixed;bottom:24px;right:24px;z-index:2147483647;background:#111827;color:#f9fafb;border:1px solid #374151;border-left:3px solid #10b981;border-radius:8px;padding:10px 16px;min-width:220px;max-width:320px;box-shadow:0 10px 25px rgba(0,0,0,0.4);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;display:flex;align-items:center;gap:10px;opacity:0;transform:translateX(110%);transition:opacity .25s ease,transform .3s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;}#passgen-toast.show{opacity:1;transform:translateX(0);}#passgen-toast svg{flex-shrink:0;width:20px;height:20px;color:#10b981;}#passgen-toast .pg-title{font-weight:600;color:#f9fafb;font-size:13px;}#passgen-toast .pg-sub{font-size:11px;color:#9ca3af;margin-top:2px;}";
+            document.documentElement.appendChild(style);
+            toast = document.createElement("div");
+            toast.id = "passgen-toast";
+            toast.innerHTML = '<svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><div class="pg-body"><div class="pg-title"></div><div class="pg-sub"></div></div>';
+            document.documentElement.appendChild(toast);
+          }
+          toast.querySelector(".pg-title").textContent = title || "Password Generated";
+          toast.querySelector(".pg-sub").textContent = sub || "Copied to clipboard.";
+          toast.classList.remove("show");
+          void toast.offsetWidth;
+          toast.classList.add("show");
+          setTimeout(() => toast.classList.remove("show"), 2600);
         }
       },
       args: [password, toastTitle, toastSub, showToast]
