@@ -77,13 +77,24 @@ Store Console'da "Privacy" sekmesinde sorulacak sorulara verilecek yanıtlar:
   - *clipboardWrite:* "Used to copy the generated password to the clipboard for user convenience."
 - **Data Usage:**
   - "Do you collect user data?": **NO** (Tüm veri toplama kutucukları işaretlenmeyecek - No data collected).
-- **Privacy Policy URL:**
-  - `https://kaangumus.ninja/passgen/` (veya `https://kaaangumus.github.io/passgen/`)
+- **Website URL:** `https://kaangumus.ninja/passgen/`
+- **Privacy Policy URL:** `https://kaangumus.ninja/passgen/privacy-policy.html`
+- **Support URL:** `https://kaangumus.ninja/passgen/support.html`
 
 ---
 
 ## 4. Yüklenecek Görseller & Dosyalar
 
-1. **Eklenti Paketi:** `passgen_store.zip`
-2. **Tanıtım Görseli (Small Promo Tile):** `promo_tile_440x280.png` (440x280 piksel)
-3. **Ekran Görüntüleri:** En az 1 adet 1280x800 veya 640x400 ekran görüntüsü (Eklenti popup'ının ve sağ tık menüsünün görüntüsü).
+Tüm dosyalar projenin ana klasöründe ve `store_assets/` içinde hazır olarak beklemektedir:
+
+1. **Eklenti Paketi (.zip):**
+   - Dosya: `passgen_store.zip` (Proje ana dizininde, ~35.6 KB, minified & mangled)
+2. **Ekran Görüntüleri (Screenshots - 1280x800 px):**
+   - `store_assets/screenshot1_modes_1280x800.png` (4 Farklı Şifre & Token Modu)
+   - `store_assets/screenshot2_context_menu_1280x800.png` (Akıllı Sağ Tık Menüsü & Bildirim)
+   - `store_assets/screenshot3_privacy_history_1280x800.png` (Göz Korumalı Maskeleme & Yerel Geçmiş)
+3. **Küçük Tanıtım Kartı (Small Promo Tile - 440x280 px):**
+   - `store_assets/promo_tile_440x280.png`
+4. **Mağaza Simgesi (Store Icon - 128x128 px):**
+   - `store_assets/icon_128x128.png` (veya `icons/icon128.png`)
+
