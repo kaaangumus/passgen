@@ -1,4 +1,4 @@
-﻿// PassGen - Ortak Sifre Uretici Modulu (crypto.getRandomValues ile)
+// PassGen - Ortak Sifre Uretici Modulu (crypto.getRandomValues ile)
 const CHARSETS = {
   uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   lowercase: "abcdefghijklmnopqrstuvwxyz",
