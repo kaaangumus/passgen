@@ -1,6 +1,12 @@
 # PassGen – Secure Password Generator Extension
 
+[![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-PassGen-blue?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/passgen-password-generato/nlalmnenadnigpacmfgbpljfiiemnddl)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-Donate-yellow.svg?logo=buymeacoffee)](https://buymeacoffee.com/kaangumus)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
 PassGen is a fast, lightweight, and cryptographically secure password generator extension for Chromium-based browsers (Chrome, Brave, Edge, Opera, Vivaldi).
+
+**[🌐 Official Website](https://kaangumus.ninja/passgen/)** · **[🛒 Chrome Web Store](https://chromewebstore.google.com/detail/passgen-password-generato/nlalmnenadnigpacmfgbpljfiiemnddl)** · **[👑 PassGen PRO](https://kaangumus.ninja/passgen/pro.html)** · **[☕ Buy Me a Coffee](https://buymeacoffee.com/kaangumus)**
 
 Generate strong passwords with a single right-click on any password input field or use the popup panel to customize your preferences.
 
