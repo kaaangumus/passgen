@@ -810,27 +810,53 @@ body {
   background: #f59e0b;
   color: #000;
 }
-.pro-locked-banner {
+.support-card {
+  margin-top: 14px;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  background: linear-gradient(180deg, rgba(245, 158, 11, 0.05) 0%, rgba(22, 27, 34, 0.9) 100%);
+}
+.badge-free {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+.sponsor-footer {
   margin-top: 12px;
-  background: rgba(168, 85, 247, 0.08);
-  border: 1px dashed rgba(168, 85, 247, 0.4);
+  padding: 6px 10px;
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.2);
   border-radius: var(--radius-sm);
-  padding: 10px;
-  text-align: center;
-}
-.pro-lock-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 11px;
-  color: #d8b4fe;
-  margin-bottom: 8px;
 }
-.btn-pro-unlock {
-  background: linear-gradient(135deg, #7c3aed, #9333ea);
-  border: none;
-  color: #ffffff;
+.sponsor-tag {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.sponsor-text {
+  color: var(--text-muted);
   font-size: 11px;
+}
+.sponsor-link {
+  color: #10b981;
+  text-decoration: none;
   font-weight: 600;
-  padding: 6px 14px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
+  font-size: 11px;
 }
-.btn-pro-unlock:hover { opacity: 0.9; }
+.sponsor-link:hover {
+  text-decoration: underline;
+}
+

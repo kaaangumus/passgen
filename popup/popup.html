@@ -47,7 +47,7 @@
         <button class="mode-btn active" data-mode="random" id="mode_random"></button>
         <button class="mode-btn" data-mode="passphrase" id="mode_passphrase"></button>
         <button class="mode-btn" data-mode="pin" id="mode_pin"></button>
-        <button class="mode-btn" data-mode="token" id="mode_token">Token 👑</button>
+        <button class="mode-btn" data-mode="token" id="mode_token">Token</button>
       </div>
 
       <!-- Password Display -->
@@ -161,7 +161,7 @@
         <div class="range-marks"><span>4</span><span>12</span></div>
       </section>
 
-      <!-- Panel: TOKEN / DEV SETTINGS (PRO) -->
+      <!-- Panel: TOKEN / DEV SETTINGS (100% FREE) -->
       <section class="settings-section" id="panel-token" style="display:none">
         <div class="setting-row">
           <label class="setting-label" id="lbl_token_format">Format</label>
@@ -171,10 +171,6 @@
           <button class="pill-btn token-pill" data-token="hex64">Hex (64)</button>
           <button class="pill-btn token-pill" data-token="base64">Base64</button>
         </div>
-        <div class="pro-locked-banner" id="tokenLockedBanner" style="display:none;">
-          <div class="pro-lock-text" id="desc_token_locked">👑 PassGen PRO geliştirici formatıdır.</div>
-          <button class="btn-pro-unlock" id="btnUnlockPro">PRO ile Aç</button>
-        </div>
       </section>
 
       <!-- Generate Button -->
@@ -182,6 +178,15 @@
         <button class="btn-primary" id="generateBtn">Şifre Üret</button>
       </div>
       <div class="copy-notice" id="copyNotice"></div>
+
+      <!-- Sponsor & Recommended Banner -->
+      <div class="sponsor-footer">
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span class="sponsor-tag">Sponsor</span>
+          <span class="sponsor-text">🔐 Bulut Şifre Yöneticisi</span>
+        </div>
+        <a href="https://kaangumus.ninja/passgen/recommended.html" target="_blank" class="sponsor-link">İncele →</a>
+      </div>
     </div>
 
     <!-- TAB 2: HISTORY -->
@@ -271,39 +276,34 @@
         </div>
       </div>
 
-      <!-- PassGen PRO & License Card -->
-      <div class="settings-card pro-card">
-        <div class="setting-group" style="border-bottom:none; margin-bottom:8px; padding-bottom:0;">
+      <!-- Geliştiriciye Destek Ol (Gönüllü Bağış) -->
+      <div class="settings-card support-card">
+        <div class="setting-group" style="border-bottom:none; margin-bottom:0; padding-bottom:0;">
           <div class="setting-meta">
             <div style="display:flex; align-items:center; gap:8px;">
-              <span class="setting-title" style="color:#c084fc; font-weight:700;">PassGen PRO</span>
-              <span class="badge-pro" id="proBadge">Free</span>
+              <span class="setting-title" style="color:#f59e0b; font-weight:700;">☕ Geliştiriciye Destek Ol</span>
+              <span class="badge-free">%100 Ücretsiz</span>
             </div>
-            <p class="setting-desc" id="desc_pro">Geliştirici araçları (UUID, Hex Token, Base64) ve öncelikli özellikler.</p>
+            <p class="setting-desc" id="desc_support">PassGen tamamen ücretsiz ve açık kaynaklıdır. Projeyi desteklemek için bir kahve ısmarlayabilirsiniz.</p>
           </div>
-          <a href="https://kaangumus.ninja/passgen/pro.html" target="_blank" class="btn-upgrade-pro" id="btnGetPro">PRO Al ($4.99)</a>
-        </div>
-        <div class="pro-input-row" id="proInputRow">
-          <input type="text" class="exclude-input" id="proKeyInput" placeholder="Lisans Anahtarı (örn: PG-PRO-...)" style="margin:0; font-size:11px;" />
-          <button class="btn-secondary" id="btnActivatePro" style="width:auto; padding:0 12px; font-size:11px;">Aktif Et</button>
+          <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+            <a href="https://buymeacoffee.com/kaangumus" target="_blank" class="btn-coffee" id="btnCoffee" style="padding:6px 12px; font-weight:700;">☕ Kahve Ismarla ($5)</a>
+            <a href="https://kaangumus.ninja/passgen/support.html" target="_blank" class="btn-partner" style="border-color:#374151; color:#9ca3af; background:#1f2937;">Monero / Kripto →</a>
+          </div>
         </div>
       </div>
 
-      <!-- Partner & Support Card -->
+      <!-- Sponsorlu Güvenlik Önerisi (Affiliate / Reklam) -->
       <div class="settings-card partner-card">
-        <div class="setting-group">
-          <div class="setting-meta">
-            <label class="setting-title" id="lbl_cloud_sync">🔐 Bulut Şifre Yöneticisi</label>
-            <p class="setting-desc" id="desc_cloud_sync">Şifrelerinizi telefon ve PC'lerinizde güvenle senkronize edin.</p>
-          </div>
-          <a href="https://kaangumus.ninja/passgen/recommended.html" target="_blank" class="btn-partner" id="btnPartner">Önerilenler →</a>
-        </div>
         <div class="setting-group" style="border-bottom:none; margin-bottom:0; padding-bottom:0;">
           <div class="setting-meta">
-            <label class="setting-title" id="lbl_support">☕ Geliştiriciye Destek</label>
-            <p class="setting-desc" id="desc_support">Eklentiyi beğendiyseniz bir kahve ısmarlayabilirsiniz.</p>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span class="sponsor-tag">Sponsor</span>
+              <label class="setting-title" id="lbl_cloud_sync">🔐 Güvenlik Sponsoru</label>
+            </div>
+            <p class="setting-desc" id="desc_cloud_sync">Şifrelerinizi telefon ve bilgisayarlarınızda uçtan uca şifrelemeyle güvenle senkronize edin.</p>
           </div>
-          <a href="https://kaangumus.ninja/passgen/support.html" target="_blank" class="btn-coffee" id="btnCoffee">Destek Ol →</a>
+          <a href="https://kaangumus.ninja/passgen/recommended.html" target="_blank" class="btn-partner" id="btnPartner">Önerilenler →</a>
         </div>
       </div>
     </div>

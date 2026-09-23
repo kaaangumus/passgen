@@ -57,7 +57,7 @@ const LANGS = {
     priv_f3:"Kriptografik güvenlik: Tarayıcının yerel crypto motoru kullanılır.",
     priv_f4:"Yerel depolama: Geçmiş ve ayarlar yalnızca kendi cihazınızda kalır.",
     priv_note:"Bu eklenti açık kaynak kodlu ve tamamen ücretsizdir.",
-    mode_token:"Token 👑",
+    mode_token:"Token",
     lbl_token_format:"Format",
     desc_token_locked:"👑 Bu format PassGen PRO geliştirici özelliğidir.",
     btn_unlock_pro:"PRO ile Aç",
@@ -119,7 +119,7 @@ const LANGS = {
     priv_f3:"Cryptographic engine: Powered by browser's native crypto API.",
     priv_f4:"Local-only storage: History and settings never leave your device.",
     priv_note:"This extension is free, open-source, and privacy-first.",
-    mode_token:"Token 👑",
+    mode_token:"Token",
     lbl_token_format:"Format",
     desc_token_locked:"👑 This format is a PassGen PRO feature.",
     btn_unlock_pro:"Unlock with PRO",
@@ -181,7 +181,7 @@ const LANGS = {
     priv_f3:"Seguridad criptográfica nativa del navegador.",
     priv_f4:"Almacenamiento 100% local en su dispositivo.",
     priv_note:"Extensión gratuita y de código abierto.",
-    mode_token:"Token 👑",
+    mode_token:"Token",
     lbl_token_format:"Formato",
     desc_token_locked:"👑 Función de PassGen PRO.",
     btn_unlock_pro:"Desbloquear con PRO",
@@ -243,7 +243,7 @@ const LANGS = {
     priv_f3:"Chiffrement cryptographique natif et sécurisé.",
     priv_f4:"Données stockées uniquement sur votre appareil.",
     priv_note:"Extension gratuite et open-source.",
-    mode_token:"Token 👑",
+    mode_token:"Token",
     lbl_token_format:"Format",
     desc_token_locked:"👑 Fonctionnalité PassGen PRO.",
     btn_unlock_pro:"Débloquer avec PRO",
@@ -305,7 +305,7 @@ const LANGS = {
     priv_f3:"Криптографическая безопасность встроенного API.",
     priv_f4:"История хранится только на вашем устройстве.",
     priv_note:"Бесплатное расширение с открытым исходным кодом.",
-    mode_token:"Токен 👑",
+    mode_token:"Токен",
     lbl_token_format:"Формат",
     desc_token_locked:"👑 Функция PassGen PRO.",
     btn_unlock_pro:"Разблокировать PRO",
@@ -367,7 +367,7 @@ const LANGS = {
     priv_f3:"原生安全密码学随机算法。",
     priv_f4:"所有配置与历史记录仅保存在本地设备上。",
     priv_note:"本扩展完全免费且开源。",
-    mode_token:"令牌 👑",
+    mode_token:"令牌",
     lbl_token_format:"格式",
     desc_token_locked:"👑 此格式属于 PassGen PRO 专业版功能。",
     btn_unlock_pro:"解锁 PRO",
@@ -769,29 +769,11 @@ let currentMode     = "random";
 let currentSep      = "-";
 let noticeTimer     = null;
 let currentOpts     = {};
-let isPro           = false;
+let isPro           = true;
 let currentTokenFmt = "uuid";
 
 function updateProUI() {
-  const badge = $("proBadge");
-  const banner = $("tokenLockedBanner");
-  const proRow = $("proInputRow");
-  const getProBtn = $("btnGetPro");
-  if (badge) {
-    if (isPro) {
-      badge.textContent = "PRO ✓";
-      badge.classList.add("active");
-      if (proRow) proRow.style.display = "none";
-      if (getProBtn) getProBtn.style.display = "none";
-      if (banner) banner.style.display = "none";
-    } else {
-      badge.textContent = "Free";
-      badge.classList.remove("active");
-      if (proRow) proRow.style.display = "flex";
-      if (getProBtn) getProBtn.style.display = "inline-block";
-      if (banner && currentMode === "token") banner.style.display = "block";
-    }
-  }
+  // All features unlocked by default (100% Free & Open Source)
 }
 
 function getOpts() {
@@ -860,10 +842,6 @@ function copyPwd() {
 
 function doGenerate() {
   currentOpts = getOpts();
-  if (currentMode === "token" && !isPro) {
-    render("PRO-PREVIEW-••••••••");
-    return;
-  }
   const pwd = generate(currentOpts);
   render(pwd);
   saveOpts(currentOpts);
@@ -881,11 +859,6 @@ document.querySelectorAll(".mode-btn").forEach(btn => {
     $("panel-passphrase").style.display  = (currentMode === "passphrase") ? "block" : "none";
     $("panel-pin").style.display         = (currentMode === "pin") ? "block" : "none";
     $("panel-token").style.display       = (currentMode === "token") ? "block" : "none";
-
-    const banner = $("tokenLockedBanner");
-    if (banner) {
-      banner.style.display = (currentMode === "token" && !isPro) ? "block" : "none";
-    }
 
     doGenerate();
   });
@@ -907,25 +880,6 @@ document.querySelectorAll(".token-pill").forEach(btn => {
     currentTokenFmt = btn.getAttribute("data-token");
     doGenerate();
   });
-});
-
-$("btnActivatePro")?.addEventListener("click", () => {
-  const inp = $("proKeyInput");
-  const key = (inp?.value || "").trim().toUpperCase();
-  if (key.startsWith("PG-PRO-") || key.startsWith("PRO-") || key === "PASSGENPRO" || key.length >= 8) {
-    isPro = true;
-    chrome.storage.sync.set({ isPro: true, proKey: key });
-    updateProUI();
-    showNotice();
-    if (currentMode === "token") doGenerate();
-  } else {
-    alert(t("pro_invalid_key"));
-  }
-});
-
-$("btnUnlockPro")?.addEventListener("click", () => {
-  document.querySelector("[data-tab='tab-settings']")?.click();
-  $("proKeyInput")?.focus();
 });
 
 // ── Tab Navigasyonu ─────────────────────────────────────────────────────────
