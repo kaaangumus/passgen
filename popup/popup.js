@@ -59,9 +59,6 @@ const LANGS = {
     priv_note:"Bu eklenti açık kaynak kodlu ve tamamen ücretsizdir.",
     mode_token:"Token",
     lbl_token_format:"Format",
-    lbl_cloud_sync:"🔐 Bulut Şifre Yöneticisi",
-    desc_cloud_sync:"Şifrelerinizi telefon ve PC'lerinizde güvenle senkronize edin.",
-    btn_partner:"Önerilenler →",
     lbl_support:"☕ Geliştiriciye Destek",
     desc_support:"Eklentiyi beğendiyseniz bir kahve ısmarlayabilirsiniz.",
     btn_coffee:"Kahve Ismarla",
@@ -117,9 +114,6 @@ const LANGS = {
     priv_note:"This extension is free, open-source, and privacy-first.",
     mode_token:"Token",
     lbl_token_format:"Format",
-    lbl_cloud_sync:"🔐 Cloud Password Sync",
-    desc_cloud_sync:"Securely sync your passwords across phones & computers.",
-    btn_partner:"Explore →",
     lbl_support:"☕ Support Developer",
     desc_support:"If you enjoy PassGen, consider buying a coffee.",
     btn_coffee:"Buy Coffee",
@@ -175,9 +169,6 @@ const LANGS = {
     priv_note:"Extensión gratuita y de código abierto.",
     mode_token:"Token",
     lbl_token_format:"Formato",
-    lbl_cloud_sync:"🔐 Sincronización en la Nube",
-    desc_cloud_sync:"Guarde contraseñas de forma segura en todos sus dispositivos.",
-    btn_partner:"Explorar →",
     lbl_support:"☕ Apoyar al Desarrollador",
     desc_support:"Si te gusta PassGen, puedes invitarme a un café.",
     btn_coffee:"Comprar Café",
@@ -233,9 +224,6 @@ const LANGS = {
     priv_note:"Extension gratuite et open-source.",
     mode_token:"Token",
     lbl_token_format:"Format",
-    lbl_cloud_sync:"🔐 Gestionnaire Cloud",
-    desc_cloud_sync:"Synchronisez vos mots de passe en toute sécurité.",
-    btn_partner:"Découvrir →",
     lbl_support:"☕ Soutenir le Développeur",
     desc_support:"Si vous aimez PassGen, offrez-moi un café.",
     btn_coffee:"Offrir un café",
@@ -291,9 +279,6 @@ const LANGS = {
     priv_note:"Бесплатное расширение с открытым исходным кодом.",
     mode_token:"Токен",
     lbl_token_format:"Формат",
-    lbl_cloud_sync:"🔐 Облачный менеджер",
-    desc_cloud_sync:"Безопасная синхронизация паролей на всех устройствах.",
-    btn_partner:"Подробнее →",
     lbl_support:"☕ Поддержать автора",
     desc_support:"Если вам нравится PassGen, угостите меня кофе.",
     btn_coffee:"Угостить кофе",
@@ -349,9 +334,6 @@ const LANGS = {
     priv_note:"本扩展完全免费且开源。",
     mode_token:"令牌",
     lbl_token_format:"格式",
-    lbl_cloud_sync:"🔐 云端密码管理器",
-    desc_cloud_sync:"在手机与电脑间安全同步您的密码。",
-    btn_partner:"查看推荐 →",
     lbl_support:"☕ 支持开发者",
     desc_support:"如果您喜欢 PassGen，请作者喝杯咖啡吧。",
     btn_coffee:"请喝咖啡",
@@ -395,7 +377,7 @@ function applyLang(lang) {
     "priv_badge", "priv_title", "priv_p1",
     "priv_f1", "priv_f2", "priv_f3", "priv_f4", "priv_note",
     "mode_token", "lbl_token_format",
-    "lbl_cloud_sync", "desc_cloud_sync", "lbl_support", "desc_support",
+    "lbl_support", "desc_support",
     "sep_space", "badge_free", "btn_crypto"
   ];
   ids.forEach(k => {
@@ -409,17 +391,8 @@ function applyLang(lang) {
   const resetBtn = document.getElementById("resetSettingsBtn");
   if (resetBtn) resetBtn.textContent = t("btn_reset");
 
-  const partnerBtn = document.getElementById("btnPartner");
-  if (partnerBtn) partnerBtn.textContent = t("btn_partner");
-
   const coffeeBtn = document.getElementById("btnCoffee");
   if (coffeeBtn) coffeeBtn.textContent = t("btn_coffee");
-
-  const sponsorFooterText = document.getElementById("sponsorFooterText");
-  if (sponsorFooterText) sponsorFooterText.textContent = t("lbl_cloud_sync");
-
-  const sponsorFooterLink = document.getElementById("sponsorFooterLink");
-  if (sponsorFooterLink) sponsorFooterLink.textContent = t("btn_partner");
 
   if (elGenBtn) elGenBtn.textContent = t("btn_generate");
 

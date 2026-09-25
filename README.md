@@ -45,7 +45,6 @@ PassGen does not collect, transmit, or store any personal data. Everything is pr
 PassGen is free, open-source, and private. If you would like to support ongoing development:
 - **Buy Me a Coffee**: [buymeacoffee.com/kaangumus](https://buymeacoffee.com/kaangumus)
 - **Monero (XMR)**: `86B97PJpPXkFAGoYXHxsxd7HjRZ859dEEZvNPAhBGyPWErinqcdjwYyehcRddFHfZP4WdBJ7d7cHdDFTYfwtZLfpJCfpBS4`
-- **Recommended Security Tools**: [kaangumus.ninja/passgen/recommended.html](https://kaangumus.ninja/passgen/recommended.html)
 
 ## 📄 License
 
