@@ -1,13 +1,28 @@
 const WORDS_EN = [
-  "falcon","sunset","river","orbit","galaxy","breeze","summit","echo","timber",
-  "shadow","spark","frost","crystal","island","anchor","meadow","harbor","beacon",
-  "thunder","glacier","velvet","voyage","lantern","prairie","silver","canyon",
-  "compass","horizon","zenith","quantum","phoenix","nebula","aurora","cascade"
+  "amber","anchor","atlas","aurora","autumn","beacon","breeze","bridge","canyon",
+  "castle","cedar","cipher","clover","comet","compass","copper","coral","crater",
+  "crystal","delta","desert","dragon","eagle","echo","ember","falcon","feather",
+  "flame","forest","fossil","frost","galaxy","glacier","granite","harbor","haven",
+  "hawk","horizon","island","jaguar","jungle","jupiter","lantern","legend","lotus",
+  "lunar","meadow","meteor","nebula","nova","oasis","ocean","olive","onyx","orbit",
+  "osprey","panther","pebble","phoenix","planet","polar","prairie","prism","pulsar",
+  "quantum","quartz","radar","raven","ridge","river","robin","ruby","saddle","safari",
+  "sailor","saturn","shadow","shield","silver","solar","spark","spiral","summit",
+  "sunset","sycamore","temple","thunder","tidal","timber","topaz","tornado","trail",
+  "tundra","valley","velvet","vessel","vortex","voyage","willow","zenith"
 ];
 const WORDS_TR = [
-  "kartal","ruzgar","nehir","gunes","yildiz","orman","zirve","bulut","deniz",
-  "toprak","simsek","kristal","ada","liman","fener","vadi","bahar","yagmur",
-  "pusula","ufuk","ates","golge","dalga","kaplan","geyik","kus"
+  "akarsu","akrep","albatros","altin","anadolu","antika","armada","aslan","ates",
+  "atlas","avci","badem","bahar","balina","bambu","baraj","bayrak","beyaz","bozkir",
+  "bulut","buzul","cadde","ceviz","cinar","dag","dalga","defne","demir","deniz",
+  "derya","destan","doga","doruk","duman","dunya","ejder","elmas","fener","firtina",
+  "gece","gezegen","geyik","girdap","golge","gumus","gunes","guvercin","halka",
+  "hilal","hisar","isik","inci","ipek","irmak","kale","kanyon","kaplan","kartal",
+  "kasirga","kaya","kehribar","kilic","kristal","kumral","kurt","kutup","kuzey",
+  "lavanta","liman","maden","marti","masal","meltem","mercan","nehir","nilufer",
+  "ocak","okyanus","orman","pars","petek","pusula","ruzgar","safir","sahil","sahin",
+  "sedir","selvi","simsek","sincap","soguk","safak","toprak","ufuk","vadi","volkan",
+  "yagmur","yakamoz","yaprak","yildiz","yunus","zirve","zumrut"
 ];
 
 const LANGS = {
@@ -524,7 +539,7 @@ function calcCrackTime(pwd, opts) {
   if (opts.mode === "pin") {
     pool = 10;
   } else if (opts.mode === "passphrase") {
-    pool = 5000;
+    pool = 100;
   } else {
     pool = 0;
     if (opts.uppercase) pool += 26;
@@ -775,7 +790,19 @@ function render(pwd) {
 
 function copyPwd() {
   if (!currentPassword) return;
-  navigator.clipboard.writeText(currentPassword).then(showNotice);
+  navigator.clipboard.writeText(currentPassword).then(() => {
+    showNotice();
+    if (elPasswordBox) {
+      elPasswordBox.classList.add("copied");
+      setTimeout(() => elPasswordBox.classList.remove("copied"), 400);
+    }
+  });
+}
+
+function previewGenerate() {
+  currentOpts = getOpts();
+  const pwd = generate(currentOpts);
+  render(pwd);
 }
 
 function doGenerate() {
@@ -843,15 +870,45 @@ elToggleMask.addEventListener("click", (e) => {
   updateDisplayMask();
 });
 
-elSlider.addEventListener("input", ()=>{ elLenVal.textContent=elSlider.value; if(currentPassword) doGenerate(); });
-elWordsSlider.addEventListener("input", ()=>{ elWordsVal.textContent=elWordsSlider.value; if(currentPassword) doGenerate(); });
-elPinSlider.addEventListener("input", ()=>{ elPinVal.textContent=elPinSlider.value; if(currentPassword) doGenerate(); });
+elSlider.addEventListener("input", () => {
+  elLenVal.textContent = elSlider.value;
+  if (currentPassword) previewGenerate();
+});
+elSlider.addEventListener("change", () => {
+  if (currentPassword) doGenerate();
+});
+
+elWordsSlider.addEventListener("input", () => {
+  elWordsVal.textContent = elWordsSlider.value;
+  if (currentPassword) previewGenerate();
+});
+elWordsSlider.addEventListener("change", () => {
+  if (currentPassword) doGenerate();
+});
+
+elPinSlider.addEventListener("input", () => {
+  elPinVal.textContent = elPinSlider.value;
+  if (currentPassword) previewGenerate();
+});
+elPinSlider.addEventListener("change", () => {
+  if (currentPassword) doGenerate();
+});
 
 [elOptU,elOptL,elOptN,elOptS,elTitleCase].forEach(el=>{
   if (el) el.addEventListener("change",()=>{ if(currentPassword) doGenerate(); });
 });
 elLangSelect.addEventListener("change", ()=>applyLang(elLangSelect.value));
-elExclude.addEventListener("input", ()=>{ if(currentPassword) doGenerate(); });
+
+let excludeDebounce = null;
+elExclude.addEventListener("input", () => {
+  if (currentPassword) {
+    previewGenerate();
+    clearTimeout(excludeDebounce);
+    excludeDebounce = setTimeout(() => {
+      saveOpts(getOpts());
+    }, 300);
+  }
+});
 
 elAutoClean.addEventListener("change", () => {
   saveOpts(getOpts());
@@ -886,6 +943,12 @@ elResetBtn.addEventListener("click", () => {
   $("panel-random").style.display = "block";
   $("panel-passphrase").style.display = "none";
   $("panel-pin").style.display = "none";
+  $("panel-token").style.display = "none";
+
+  currentTokenFmt = DEFAULTS.tokenFormat || "uuid";
+  document.querySelectorAll(".token-pill").forEach(b => b.classList.toggle("active", b.getAttribute("data-token") === currentTokenFmt));
+  currentSep = DEFAULTS.separator || "-";
+  document.querySelectorAll(".pill-btn:not(.token-pill)").forEach(b => b.classList.toggle("active", b.getAttribute("data-sep") === currentSep));
 
   elSlider.value = DEFAULTS.length;
   elLenVal.textContent = DEFAULTS.length;
@@ -914,6 +977,20 @@ $("clearHistoryBtn").addEventListener("click", ()=>{
   history=[];
   chrome.storage.local.remove("passgen_history");
   renderHistory();
+});
+
+// Popup Klavye Kısayolları (Space/Enter: Yeniden Üret, C: Kopyala)
+document.addEventListener("keydown", (e) => {
+  const tag = e.target ? e.target.tagName : "";
+  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+
+  if (e.code === "Space" || e.code === "Enter") {
+    e.preventDefault();
+    doGenerate();
+  } else if (e.key === "c" || e.key === "C") {
+    e.preventDefault();
+    copyPwd();
+  }
 });
 
 (function addKbdHint() {
