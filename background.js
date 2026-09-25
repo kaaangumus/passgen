@@ -199,6 +199,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     separator:     result.separator     || DEFAULT_OPTIONS.separator,
     titleCase:     result.titleCase !== undefined ? result.titleCase : DEFAULT_OPTIONS.titleCase,
     pinDigits:     result.pinDigits     || DEFAULT_OPTIONS.pinDigits,
+    tokenFormat:   result.tokenFormat   || DEFAULT_OPTIONS.tokenFormat,
     lang:          result.lang
   };
 

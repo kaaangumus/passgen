@@ -59,19 +59,12 @@ const LANGS = {
     priv_note:"Bu eklenti açık kaynak kodlu ve tamamen ücretsizdir.",
     mode_token:"Token",
     lbl_token_format:"Format",
-    desc_token_locked:"👑 Bu format PassGen PRO geliştirici özelliğidir.",
-    btn_unlock_pro:"PRO ile Aç",
-    desc_pro:"Geliştirici araçları (UUID, Hex Token, Base64) ve öncelikli özellikler.",
-    btn_get_pro:"PRO Al ($4.99)",
     lbl_cloud_sync:"🔐 Bulut Şifre Yöneticisi",
     desc_cloud_sync:"Şifrelerinizi telefon ve PC'lerinizde güvenle senkronize edin.",
     btn_partner:"Önerilenler →",
     lbl_support:"☕ Geliştiriciye Destek",
     desc_support:"Eklentiyi beğendiyseniz bir kahve ısmarlayabilirsiniz.",
-    btn_coffee:"Kahve Ismarla",
-    pro_key_ph:"Lisans Anahtarı (örn: PG-PRO-...)",
-    btn_activate_pro:"Aktif Et",
-    pro_invalid_key:"Geçersiz lisans anahtarı. Lütfen kontrol edin."
+    btn_coffee:"Kahve Ismarla"
   },
   en: {
     _name:"English", brand_tagline:"Password Generator",
@@ -121,19 +114,12 @@ const LANGS = {
     priv_note:"This extension is free, open-source, and privacy-first.",
     mode_token:"Token",
     lbl_token_format:"Format",
-    desc_token_locked:"👑 This format is a PassGen PRO feature.",
-    btn_unlock_pro:"Unlock with PRO",
-    desc_pro:"Developer tools (UUID, Hex Token, Base64) & priority features.",
-    btn_get_pro:"Get PRO ($4.99)",
     lbl_cloud_sync:"🔐 Cloud Password Sync",
     desc_cloud_sync:"Securely sync your passwords across phones & computers.",
     btn_partner:"Explore →",
     lbl_support:"☕ Support Developer",
     desc_support:"If you enjoy PassGen, consider buying a coffee.",
-    btn_coffee:"Buy Coffee",
-    pro_key_ph:"License Key (e.g. PG-PRO-...)",
-    btn_activate_pro:"Activate",
-    pro_invalid_key:"Invalid license key. Please check your key."
+    btn_coffee:"Buy Coffee"
   },
   es: {
     _name:"Español", brand_tagline:"Generador de Contraseñas",
@@ -183,19 +169,12 @@ const LANGS = {
     priv_note:"Extensión gratuita y de código abierto.",
     mode_token:"Token",
     lbl_token_format:"Formato",
-    desc_token_locked:"👑 Función de PassGen PRO.",
-    btn_unlock_pro:"Desbloquear con PRO",
-    desc_pro:"Herramientas para desarrolladores (UUID, Hex, Base64).",
-    btn_get_pro:"Obtener PRO ($4.99)",
     lbl_cloud_sync:"🔐 Sincronización en la Nube",
     desc_cloud_sync:"Guarde contraseñas de forma segura en todos sus dispositivos.",
     btn_partner:"Explorar →",
     lbl_support:"☕ Apoyar al Desarrollador",
     desc_support:"Si te gusta PassGen, puedes invitarme a un café.",
-    btn_coffee:"Comprar Café",
-    pro_key_ph:"Clave de licencia (ej: PG-PRO-...)",
-    btn_activate_pro:"Activar",
-    pro_invalid_key:"Clave de licencia no válida."
+    btn_coffee:"Comprar Café"
   },
   fr: {
     _name:"Français", brand_tagline:"Générateur de Mots de Passe",
@@ -245,19 +224,12 @@ const LANGS = {
     priv_note:"Extension gratuite et open-source.",
     mode_token:"Token",
     lbl_token_format:"Format",
-    desc_token_locked:"👑 Fonctionnalité PassGen PRO.",
-    btn_unlock_pro:"Débloquer avec PRO",
-    desc_pro:"Outils de développement (UUID, Hex Token, Base64).",
-    btn_get_pro:"Obtenir PRO (4.99$)",
     lbl_cloud_sync:"🔐 Gestionnaire Cloud",
     desc_cloud_sync:"Synchronisez vos mots de passe en toute sécurité.",
     btn_partner:"Découvrir →",
     lbl_support:"☕ Soutenir le Développeur",
     desc_support:"Si vous aimez PassGen, offrez-moi un café.",
-    btn_coffee:"Offrir un café",
-    pro_key_ph:"Clé de licence (ex: PG-PRO-...)",
-    btn_activate_pro:"Activer",
-    pro_invalid_key:"Clé de licence invalide."
+    btn_coffee:"Offrir un café"
   },
   ru: {
     _name:"Русский", brand_tagline:"Генератор паролей",
@@ -307,19 +279,12 @@ const LANGS = {
     priv_note:"Бесплатное расширение с открытым исходным кодом.",
     mode_token:"Токен",
     lbl_token_format:"Формат",
-    desc_token_locked:"👑 Функция PassGen PRO.",
-    btn_unlock_pro:"Разблокировать PRO",
-    desc_pro:"Инструменты разработчика (UUID, Hex, Base64).",
-    btn_get_pro:"Купить PRO ($4.99)",
     lbl_cloud_sync:"🔐 Облачный менеджер",
     desc_cloud_sync:"Безопасная синхронизация паролей на всех устройствах.",
     btn_partner:"Подробнее →",
     lbl_support:"☕ Поддержать автора",
     desc_support:"Если вам нравится PassGen, угостите меня кофе.",
-    btn_coffee:"Угостить кофе",
-    pro_key_ph:"Лицензионный ключ (напр: PG-PRO-...)",
-    btn_activate_pro:"Активировать",
-    pro_invalid_key:"Неверный лицензионный ключ."
+    btn_coffee:"Угостить кофе"
   },
   zh: {
     _name:"中文", brand_tagline:"密码生成器",
@@ -369,19 +334,12 @@ const LANGS = {
     priv_note:"本扩展完全免费且开源。",
     mode_token:"令牌",
     lbl_token_format:"格式",
-    desc_token_locked:"👑 此格式属于 PassGen PRO 专业版功能。",
-    btn_unlock_pro:"解锁 PRO",
-    desc_pro:"开发者工具（UUID、Hex密钥、Base64）及专属特性。",
-    btn_get_pro:"获取 PRO ($4.99)",
     lbl_cloud_sync:"🔐 云端密码管理器",
     desc_cloud_sync:"在手机与电脑间安全同步您的密码。",
     btn_partner:"查看推荐 →",
     lbl_support:"☕ 支持开发者",
     desc_support:"如果您喜欢 PassGen，请作者喝杯咖啡吧。",
-    btn_coffee:"请喝咖啡",
-    pro_key_ph:"授权密钥（例如：PG-PRO-...）",
-    btn_activate_pro:"激活",
-    pro_invalid_key:"授权密钥无效，请核对后重试。"
+    btn_coffee:"请喝咖啡"
   }
 };
 
@@ -418,8 +376,8 @@ function applyLang(lang) {
     "lbl_reset_title", "desc_reset",
     "priv_badge", "priv_title", "priv_p1",
     "priv_f1", "priv_f2", "priv_f3", "priv_f4", "priv_note",
-    "mode_token", "lbl_token_format", "desc_token_locked",
-    "desc_pro", "lbl_cloud_sync", "desc_cloud_sync", "lbl_support", "desc_support"
+    "mode_token", "lbl_token_format",
+    "lbl_cloud_sync", "desc_cloud_sync", "lbl_support", "desc_support"
   ];
   ids.forEach(k => {
     const el = document.getElementById(k);
@@ -432,25 +390,17 @@ function applyLang(lang) {
   const resetBtn = document.getElementById("resetSettingsBtn");
   if (resetBtn) resetBtn.textContent = t("btn_reset");
 
-  const getProBtn = document.getElementById("btnGetPro");
-  if (getProBtn) getProBtn.textContent = t("btn_get_pro");
-
   const partnerBtn = document.getElementById("btnPartner");
   if (partnerBtn) partnerBtn.textContent = t("btn_partner");
 
   const coffeeBtn = document.getElementById("btnCoffee");
   if (coffeeBtn) coffeeBtn.textContent = t("btn_coffee");
 
-  const actBtn = document.getElementById("btnActivatePro");
-  if (actBtn) actBtn.textContent = t("btn_activate_pro");
+  const sponsorFooterText = document.getElementById("sponsorFooterText");
+  if (sponsorFooterText) sponsorFooterText.textContent = t("lbl_cloud_sync");
 
-  const unlockBtn = document.getElementById("btnUnlockPro");
-  if (unlockBtn) unlockBtn.textContent = t("btn_unlock_pro");
-
-  const proInput = document.getElementById("proKeyInput");
-  if (proInput) proInput.placeholder = t("pro_key_ph");
-
-  updateProUI();
+  const sponsorFooterLink = document.getElementById("sponsorFooterLink");
+  if (sponsorFooterLink) sponsorFooterLink.textContent = t("btn_partner");
 
   if (elGenBtn) elGenBtn.textContent = t("btn_generate");
 
@@ -496,9 +446,7 @@ const DEFAULTS = {
   autoClean: "never",
   histLimit: 10,
   showToast: true,
-  lang: null,
-  isPro: false,
-  proKey: ""
+  lang: null
 };
 
 function rand(max) {
@@ -769,12 +717,7 @@ let currentMode     = "random";
 let currentSep      = "-";
 let noticeTimer     = null;
 let currentOpts     = {};
-let isPro           = true;
 let currentTokenFmt = "uuid";
-
-function updateProUI() {
-  // All features unlocked by default (100% Free & Open Source)
-}
 
 function getOpts() {
   return {
@@ -794,8 +737,7 @@ function getOpts() {
     maskDefault:   elMaskDefault.checked,
     autoClean:     elAutoClean.value,
     histLimit:     parseInt(elHistLimit.value) || 10,
-    showToast:     elShowToast.checked,
-    isPro:         isPro
+    showToast:     elShowToast.checked
   };
 }
 
@@ -991,7 +933,6 @@ chrome.storage.sync.get(DEFAULTS, stored => {
   const lang = stored.lang || detectBrowserLang();
 
   currentMode = stored.mode || "random";
-  isPro = stored.isPro || false;
   currentTokenFmt = stored.tokenFormat || "uuid";
   document.querySelectorAll(".token-pill").forEach(b => b.classList.toggle("active", b.getAttribute("data-token") === currentTokenFmt));
   document.querySelectorAll(".mode-btn").forEach(b => b.classList.toggle("active", b.getAttribute("data-mode") === currentMode));
@@ -999,8 +940,6 @@ chrome.storage.sync.get(DEFAULTS, stored => {
   $("panel-passphrase").style.display  = (currentMode === "passphrase") ? "block" : "none";
   $("panel-pin").style.display         = (currentMode === "pin") ? "block" : "none";
   $("panel-token").style.display       = (currentMode === "token") ? "block" : "none";
-  if ($("proKeyInput") && stored.proKey) $("proKeyInput").value = stored.proKey;
-  updateProUI();
 
   currentSep = stored.separator || "-";
   document.querySelectorAll(".pill-btn:not(.token-pill)").forEach(b => b.classList.toggle("active", b.getAttribute("data-sep") === currentSep));

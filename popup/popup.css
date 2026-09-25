@@ -736,44 +736,6 @@ body {
 }
 .history-btn:hover { color: var(--accent); }
 
-/* Monetization & PRO Styles */
-.pro-card {
-  margin-top: 14px;
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  background: linear-gradient(180deg, rgba(168, 85, 247, 0.05) 0%, rgba(22, 27, 34, 0.9) 100%);
-}
-.badge-pro {
-  background: #374151;
-  color: #9ca3af;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.badge-pro.active {
-  background: linear-gradient(135deg, #a855f7, #ec4899);
-  color: #ffffff;
-  box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
-}
-.btn-upgrade-pro {
-  background: linear-gradient(135deg, #7c3aed, #9333ea);
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 5px 10px;
-  border-radius: var(--radius-sm);
-  white-space: nowrap;
-  transition: opacity 0.15s, transform 0.1s;
-}
-.btn-upgrade-pro:hover { opacity: 0.9; transform: translateY(-1px); }
-.pro-input-row {
-  display: flex;
-  gap: 6px;
-  margin-top: 10px;
-}
 .partner-card {
   margin-top: 14px;
   background: #161b22;
