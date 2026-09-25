@@ -450,8 +450,12 @@ const DEFAULTS = {
 };
 
 function rand(max) {
+  if (max <= 1) return 0;
+  const limit = Math.floor(0x100000000 / max) * max;
   const a = new Uint32Array(1);
-  crypto.getRandomValues(a);
+  do {
+    crypto.getRandomValues(a);
+  } while (a[0] >= limit);
   return a[0] % max;
 }
 

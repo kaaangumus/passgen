@@ -72,7 +72,6 @@ function processCSS(src, dest) {
 
   // JS (minify + obfuscate)
   await processJS(path.join(SRC, "background.js"),    path.join(DIST, "background.js"));
-  await processJS(path.join(SRC, "content.js"),        path.join(DIST, "content.js"));
   await processJS(path.join(SRC, "popup", "popup.js"), path.join(DIST, "popup", "popup.js"));
 
   // CSS (minify)

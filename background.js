@@ -34,8 +34,12 @@ const DEFAULT_OPTIONS = {
 };
 
 function getRandomInt(max) {
+  if (max <= 1) return 0;
+  const limit = Math.floor(0x100000000 / max) * max;
   const buf = new Uint32Array(1);
-  crypto.getRandomValues(buf);
+  do {
+    crypto.getRandomValues(buf);
+  } while (buf[0] >= limit);
   return buf[0] % max;
 }
 
@@ -225,7 +229,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     await chrome.scripting.executeScript({
       target: { tabId: tab.id },
       func: (pwd, title, sub, canToast) => {
-        let el = window.__passgenLastTarget || document.activeElement;
+        let el = document.activeElement;
         if (el && !el.matches("input, textarea, [contenteditable]")) {
           el = el.closest("input, textarea") || el.querySelector("input[type='password']") || el.querySelector("input, textarea") || document.activeElement;
         }
@@ -293,6 +297,7 @@ chrome.commands.onCommand.addListener(async (command) => {
     separator:     stored.separator     || DEFAULT_OPTIONS.separator,
     titleCase:     stored.titleCase !== undefined ? stored.titleCase : DEFAULT_OPTIONS.titleCase,
     pinDigits:     stored.pinDigits     || DEFAULT_OPTIONS.pinDigits,
+    tokenFormat:   stored.tokenFormat   || DEFAULT_OPTIONS.tokenFormat,
     lang:          stored.lang
   };
   const l          = getLang(stored.lang);
