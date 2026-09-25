@@ -64,7 +64,10 @@ const LANGS = {
     btn_partner:"Önerilenler →",
     lbl_support:"☕ Geliştiriciye Destek",
     desc_support:"Eklentiyi beğendiyseniz bir kahve ısmarlayabilirsiniz.",
-    btn_coffee:"Kahve Ismarla"
+    btn_coffee:"Kahve Ismarla",
+    sep_space:"Boşluk",
+    badge_free:"%100 Ücretsiz",
+    btn_crypto:"Monero / Kripto →"
   },
   en: {
     _name:"English", brand_tagline:"Password Generator",
@@ -119,7 +122,10 @@ const LANGS = {
     btn_partner:"Explore →",
     lbl_support:"☕ Support Developer",
     desc_support:"If you enjoy PassGen, consider buying a coffee.",
-    btn_coffee:"Buy Coffee"
+    btn_coffee:"Buy Coffee",
+    sep_space:"Space",
+    badge_free:"100% Free",
+    btn_crypto:"Monero / Crypto →"
   },
   es: {
     _name:"Español", brand_tagline:"Generador de Contraseñas",
@@ -174,7 +180,10 @@ const LANGS = {
     btn_partner:"Explorar →",
     lbl_support:"☕ Apoyar al Desarrollador",
     desc_support:"Si te gusta PassGen, puedes invitarme a un café.",
-    btn_coffee:"Comprar Café"
+    btn_coffee:"Comprar Café",
+    sep_space:"Espacio",
+    badge_free:"100% Gratis",
+    btn_crypto:"Monero / Cripto →"
   },
   fr: {
     _name:"Français", brand_tagline:"Générateur de Mots de Passe",
@@ -229,7 +238,10 @@ const LANGS = {
     btn_partner:"Découvrir →",
     lbl_support:"☕ Soutenir le Développeur",
     desc_support:"Si vous aimez PassGen, offrez-moi un café.",
-    btn_coffee:"Offrir un café"
+    btn_coffee:"Offrir un café",
+    sep_space:"Espace",
+    badge_free:"100% Gratuit",
+    btn_crypto:"Monero / Crypto →"
   },
   ru: {
     _name:"Русский", brand_tagline:"Генератор паролей",
@@ -284,7 +296,10 @@ const LANGS = {
     btn_partner:"Подробнее →",
     lbl_support:"☕ Поддержать автора",
     desc_support:"Если вам нравится PassGen, угостите меня кофе.",
-    btn_coffee:"Угостить кофе"
+    btn_coffee:"Угостить кофе",
+    sep_space:"Пробел",
+    badge_free:"100% Бесплатно",
+    btn_crypto:"Monero / Крипта →"
   },
   zh: {
     _name:"中文", brand_tagline:"密码生成器",
@@ -339,7 +354,10 @@ const LANGS = {
     btn_partner:"查看推荐 →",
     lbl_support:"☕ 支持开发者",
     desc_support:"如果您喜欢 PassGen，请作者喝杯咖啡吧。",
-    btn_coffee:"请喝咖啡"
+    btn_coffee:"请喝咖啡",
+    sep_space:"空格",
+    badge_free:"100% 免费",
+    btn_crypto:"门罗币 / 加密货币 →"
   }
 };
 
@@ -377,7 +395,8 @@ function applyLang(lang) {
     "priv_badge", "priv_title", "priv_p1",
     "priv_f1", "priv_f2", "priv_f3", "priv_f4", "priv_note",
     "mode_token", "lbl_token_format",
-    "lbl_cloud_sync", "desc_cloud_sync", "lbl_support", "desc_support"
+    "lbl_cloud_sync", "desc_cloud_sync", "lbl_support", "desc_support",
+    "sep_space", "badge_free", "btn_crypto"
   ];
   ids.forEach(k => {
     const el = document.getElementById(k);

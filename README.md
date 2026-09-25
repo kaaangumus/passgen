@@ -23,7 +23,7 @@ Generate strong passwords with a single right-click on any password input field 
 - **Instant Right-Click Generation**: Right-click on any password field and select "Generate Password".
 - **Cryptographically Secure**: Powered exclusively by browser native `crypto.getRandomValues()`.
 - **100% Offline & Private**: Zero telemetry, zero analytics, zero external network requests.
-- **Strength & Brute-force Crack Time**: Real-time visual entropy feedback and estimated crack time for all 3 modes.
+- **Strength & Brute-force Crack Time**: Real-time visual entropy feedback and estimated crack time for all modes.
 - **Password History & Auto-clean**: Keep track of recently generated passwords with options to disable history completely or auto-clean after 24 hours, 7 days, or 30 days.
 - **Global Keyboard Shortcut**: Press `Alt+Shift+G` to generate and copy a password instantly.
 - **6-Language Internationalization (i18n)**: English, Turkish, Spanish, French, Russian, and Simplified Chinese.
