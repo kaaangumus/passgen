@@ -482,64 +482,6 @@ body {
   overflow-y: auto;
 }
 
-/* Privacy Pane */
-.privacy-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 14px;
-  margin-bottom: 12px;
-}
-.privacy-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(16,185,129,0.1);
-  border: 1px solid rgba(16,185,129,0.25);
-  color: var(--accent);
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 99px;
-  margin-bottom: 10px;
-}
-.privacy-heading {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 6px;
-}
-.privacy-text {
-  font-size: 12px;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: 12px;
-}
-.privacy-features {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  margin-bottom: 12px;
-}
-.priv-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11.5px;
-  color: var(--text-primary);
-}
-.priv-check {
-  color: var(--accent);
-  font-weight: 700;
-  flex-shrink: 0;
-}
-.privacy-footer-note {
-  font-size: 10.5px;
-  color: var(--text-muted);
-  border-top: 1px solid var(--border);
-  padding-top: 8px;
-  line-height: 1.4;
-}
 
 /* Settings Card & Groups */
 .settings-card {
@@ -657,67 +599,11 @@ body {
   background-color: #ffffff;
 }
 
-/* Mode Selector (Random / Passphrase / PIN) */
-.mode-selector {
-  display: flex;
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 2px;
-  gap: 2px;
-  margin-bottom: 12px;
-}
-.mode-btn {
-  flex: 1;
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 5px 2px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.mode-btn:hover { color: var(--text-primary); }
-.mode-btn.active {
-  background: var(--bg-raised);
-  color: var(--accent);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-}
-
 /* Box Actions (Göz + Kopyala) */
 .box-actions {
   display: flex;
   align-items: center;
   gap: 2px;
-}
-
-/* Pill Group (Passphrase Separators) */
-.pill-group {
-  display: flex;
-  gap: 6px;
-}
-.pill-btn {
-  flex: 1;
-  background: var(--bg-raised);
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-  border-radius: var(--radius-sm);
-  padding: 5px 0;
-  font-size: 11px;
-  font-family: monospace;
-  font-weight: 600;
-  cursor: pointer;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
-  text-align: center;
-}
-.pill-btn:hover { border-color: var(--accent); color: var(--text-primary); }
-.pill-btn.active {
-  border-color: var(--accent);
-  background: rgba(16, 185, 129, 0.1);
-  color: var(--accent);
 }
 
 /* History item actions (Mask + Copy) */
@@ -731,15 +617,21 @@ body {
   border: none;
   color: var(--text-muted);
   cursor: pointer;
-  padding: 2px 4px;
+  padding: 4px;
   border-radius: 3px;
-  font-size: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.15s;
+  transition: color 0.15s, background 0.15s;
 }
-.history-btn:hover { color: var(--accent); }
+.history-btn:hover {
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+.history-btn svg {
+  width: 13px;
+  height: 13px;
+}
 
 .btn-coffee {
   background: rgba(245, 158, 11, 0.15);

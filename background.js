@@ -5,46 +5,13 @@ const CHARSETS = {
   symbols: "!@#$%^&*()_+-=[]{}|;:,.<>?"
 };
 
-const WORDS_EN = [
-  "amber","anchor","atlas","aurora","autumn","beacon","breeze","bridge","canyon",
-  "castle","cedar","cipher","clover","comet","compass","copper","coral","crater",
-  "crystal","delta","desert","dragon","eagle","echo","ember","falcon","feather",
-  "flame","forest","fossil","frost","galaxy","glacier","granite","harbor","haven",
-  "hawk","horizon","island","jaguar","jungle","jupiter","lantern","legend","lotus",
-  "lunar","meadow","meteor","nebula","nova","oasis","ocean","olive","onyx","orbit",
-  "osprey","panther","pebble","phoenix","planet","polar","prairie","prism","pulsar",
-  "quantum","quartz","radar","raven","ridge","river","robin","ruby","saddle","safari",
-  "sailor","saturn","shadow","shield","silver","solar","spark","spiral","summit",
-  "sunset","sycamore","temple","thunder","tidal","timber","topaz","tornado","trail",
-  "tundra","valley","velvet","vessel","vortex","voyage","willow","zenith"
-];
-const WORDS_TR = [
-  "akarsu","akrep","albatros","altin","anadolu","antika","armada","aslan","ates",
-  "atlas","avci","badem","bahar","balina","bambu","baraj","bayrak","beyaz","bozkir",
-  "bulut","buzul","cadde","ceviz","cinar","dag","dalga","defne","demir","deniz",
-  "derya","destan","doga","doruk","duman","dunya","ejder","elmas","fener","firtina",
-  "gece","gezegen","geyik","girdap","golge","gumus","gunes","guvercin","halka",
-  "hilal","hisar","isik","inci","ipek","irmak","kale","kanyon","kaplan","kartal",
-  "kasirga","kaya","kehribar","kilic","kristal","kumral","kurt","kutup","kuzey",
-  "lavanta","liman","maden","marti","masal","meltem","mercan","nehir","nilufer",
-  "ocak","okyanus","orman","pars","petek","pusula","ruzgar","safir","sahil","sahin",
-  "sedir","selvi","simsek","sincap","soguk","safak","toprak","ufuk","vadi","volkan",
-  "yagmur","yakamoz","yaprak","yildiz","yunus","zirve","zumrut"
-];
-
 const DEFAULT_OPTIONS = {
-  mode: "random",
   length: 16,
   uppercase: true,
   lowercase: true,
   numbers: true,
   symbols: true,
   exclude: "",
-  wordsCount: 4,
-  separator: "-",
-  titleCase: true,
-  pinDigits: 6,
-  tokenFormat: "uuid",
   enableHistory: true
 };
 
@@ -60,48 +27,6 @@ function getRandomInt(max) {
 
 function generatePassword(options) {
   const opts = Object.assign({}, DEFAULT_OPTIONS, options);
-
-  if (opts.mode === "pin") {
-    const digits = Math.max(4, Math.min(12, opts.pinDigits || 6));
-    let res = "";
-    for (let i = 0; i < digits; i++) res += getRandomInt(10);
-    return res;
-  }
-
-  if (opts.mode === "passphrase") {
-    const pool = (opts.lang === "tr") ? WORDS_TR : WORDS_EN;
-    const count = Math.max(3, Math.min(7, opts.wordsCount || 4));
-    const sep = opts.separator !== undefined ? opts.separator : "-";
-    const words = [];
-    for (let i = 0; i < count; i++) {
-      let w = pool[getRandomInt(pool.length)];
-      if (opts.titleCase) w = w.charAt(0).toUpperCase() + w.slice(1);
-      words.push(w);
-    }
-    return words.join(sep);
-  }
-
-  if (opts.mode === "token") {
-    const fmt = opts.tokenFormat || "uuid";
-    if (fmt === "uuid") {
-      return typeof crypto.randomUUID === "function"
-        ? crypto.randomUUID()
-        : "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
-            const r = getRandomInt(16);
-            return (c === "x" ? r : (r & 0x3 | 0x8)).toString(16);
-          });
-    }
-    if (fmt === "hex64") {
-      const bytes = new Uint8Array(32);
-      crypto.getRandomValues(bytes);
-      return Array.from(bytes, b => b.toString(16).padStart(2, "0")).join("");
-    }
-    if (fmt === "base64") {
-      const bytes = new Uint8Array(24);
-      crypto.getRandomValues(bytes);
-      return btoa(String.fromCharCode.apply(null, bytes));
-    }
-  }
 
   const excl = new Set((opts.exclude || "").split(""));
   function clean(s) { return s.split("").filter(c => !excl.has(c)).join(""); }
@@ -207,18 +132,12 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 
   const result = await chrome.storage.sync.get(Object.assign({ lang: null }, DEFAULT_OPTIONS));
   const opts = {
-    mode:          result.mode          || DEFAULT_OPTIONS.mode,
     length:        result.length        || DEFAULT_OPTIONS.length,
     uppercase:     result.uppercase !== undefined ? result.uppercase : DEFAULT_OPTIONS.uppercase,
     lowercase:     result.lowercase !== undefined ? result.lowercase : DEFAULT_OPTIONS.lowercase,
     numbers:       result.numbers   !== undefined ? result.numbers   : DEFAULT_OPTIONS.numbers,
     symbols:       result.symbols   !== undefined ? result.symbols   : DEFAULT_OPTIONS.symbols,
     exclude:       result.exclude       || "",
-    wordsCount:    result.wordsCount    || DEFAULT_OPTIONS.wordsCount,
-    separator:     result.separator     || DEFAULT_OPTIONS.separator,
-    titleCase:     result.titleCase !== undefined ? result.titleCase : DEFAULT_OPTIONS.titleCase,
-    pinDigits:     result.pinDigits     || DEFAULT_OPTIONS.pinDigits,
-    tokenFormat:   result.tokenFormat   || DEFAULT_OPTIONS.tokenFormat,
     lang:          result.lang
   };
 
@@ -301,18 +220,12 @@ chrome.commands.onCommand.addListener(async (command) => {
 
   const stored = await chrome.storage.sync.get(Object.assign({ lang: null }, DEFAULT_OPTIONS));
   const opts   = {
-    mode:          stored.mode          || DEFAULT_OPTIONS.mode,
     length:        stored.length        || DEFAULT_OPTIONS.length,
     uppercase:     stored.uppercase !== undefined ? stored.uppercase : DEFAULT_OPTIONS.uppercase,
     lowercase:     stored.lowercase !== undefined ? stored.lowercase : DEFAULT_OPTIONS.lowercase,
     numbers:       stored.numbers   !== undefined ? stored.numbers   : DEFAULT_OPTIONS.numbers,
     symbols:       stored.symbols   !== undefined ? stored.symbols   : DEFAULT_OPTIONS.symbols,
     exclude:       stored.exclude       || "",
-    wordsCount:    stored.wordsCount    || DEFAULT_OPTIONS.wordsCount,
-    separator:     stored.separator     || DEFAULT_OPTIONS.separator,
-    titleCase:     stored.titleCase !== undefined ? stored.titleCase : DEFAULT_OPTIONS.titleCase,
-    pinDigits:     stored.pinDigits     || DEFAULT_OPTIONS.pinDigits,
-    tokenFormat:   stored.tokenFormat   || DEFAULT_OPTIONS.tokenFormat,
     lang:          stored.lang
   };
   const l          = getLang(stored.lang);

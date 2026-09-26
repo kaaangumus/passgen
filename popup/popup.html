@@ -31,24 +31,15 @@
       </select>
     </header>
 
-    <!-- Navigation Tabs (4 Sekme) -->
+    <!-- Navigation Tabs (3 Sekme) -->
     <nav class="nav-tabs">
       <button class="tab-btn active" data-tab="tab-generator" id="tab_btn_gen"></button>
       <button class="tab-btn" data-tab="tab-history" id="tab_btn_hist"></button>
       <button class="tab-btn" data-tab="tab-settings" id="tab_btn_settings"></button>
-      <button class="tab-btn" data-tab="tab-privacy" id="tab_btn_priv"></button>
     </nav>
 
     <!-- TAB 1: GENERATOR -->
     <div class="tab-pane active" id="tab-generator">
-
-      <!-- Mode Selector Pills -->
-      <div class="mode-selector">
-        <button class="mode-btn active" data-mode="random" id="mode_random"></button>
-        <button class="mode-btn" data-mode="passphrase" id="mode_passphrase"></button>
-        <button class="mode-btn" data-mode="pin" id="mode_pin"></button>
-        <button class="mode-btn" data-mode="token" id="mode_token">Token</button>
-      </div>
 
       <!-- Password Display -->
       <section class="password-section">
@@ -123,55 +114,6 @@
         <input type="text" class="exclude-input" id="excludeInput" maxlength="30" spellcheck="false" autocomplete="off" />
       </section>
 
-      <!-- Panel: PASSPHRASE SETTINGS -->
-      <section class="settings-section" id="panel-passphrase" style="display:none">
-        <div class="setting-row">
-          <label class="setting-label" id="lbl_words_count"></label>
-          <span class="setting-value" id="wordsValue">4</span>
-        </div>
-        <input type="range" class="range-input" id="wordsSlider" min="3" max="7" value="4" step="1" />
-        <div class="range-marks"><span>3</span><span>7</span></div>
-
-        <div class="setting-row" style="margin-top:14px">
-          <label class="setting-label" id="lbl_separator"></label>
-        </div>
-        <div class="pill-group">
-          <button class="pill-btn active" data-sep="-">-</button>
-          <button class="pill-btn" data-sep="_">_</button>
-          <button class="pill-btn" data-sep=".">.</button>
-          <button class="pill-btn" data-sep=" " id="sep_space">Boşluk</button>
-        </div>
-
-        <div class="checkbox-grid" style="margin-top:12px; grid-template-columns: 1fr;">
-          <label class="checkbox-label">
-            <input type="checkbox" id="opt-titlecase" checked />
-            <span class="checkbox-box"></span>
-            <span id="opt_titlecase"></span>
-          </label>
-        </div>
-      </section>
-
-      <!-- Panel: PIN SETTINGS -->
-      <section class="settings-section" id="panel-pin" style="display:none">
-        <div class="setting-row">
-          <label class="setting-label" id="lbl_pin_digits"></label>
-          <span class="setting-value" id="pinValue">6</span>
-        </div>
-        <input type="range" class="range-input" id="pinSlider" min="4" max="12" value="6" step="1" />
-        <div class="range-marks"><span>4</span><span>12</span></div>
-      </section>
-
-      <!-- Panel: TOKEN / DEV SETTINGS (100% FREE) -->
-      <section class="settings-section" id="panel-token" style="display:none">
-        <div class="setting-row">
-          <label class="setting-label" id="lbl_token_format">Format</label>
-        </div>
-        <div class="pill-group" style="grid-template-columns: 1fr 1fr 1fr;">
-          <button class="pill-btn token-pill active" data-token="uuid">UUID v4</button>
-          <button class="pill-btn token-pill" data-token="hex64">Hex (64)</button>
-          <button class="pill-btn token-pill" data-token="base64">Base64</button>
-        </div>
-      </section>
 
       <!-- Generate Button -->
       <div class="action-section">
@@ -272,57 +214,23 @@
         <div class="setting-group" style="border-bottom:none; margin-bottom:0; padding-bottom:0;">
           <div class="setting-meta">
             <div style="display:flex; align-items:center; gap:8px;">
-              <span class="setting-title" id="lbl_support" style="color:#f59e0b; font-weight:700;">☕ Geliştiriciye Destek Ol</span>
+              <span class="setting-title" id="lbl_support" style="color:#f59e0b; font-weight:700;">Geliştiriciye Destek Ol</span>
               <span class="badge-free" id="badge_free">%100 Ücretsiz</span>
             </div>
             <p class="setting-desc" id="desc_support">PassGen tamamen ücretsiz ve açık kaynaklıdır. Projeyi desteklemek için bir kahve ısmarlayabilirsiniz.</p>
           </div>
           <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
-            <a href="https://buymeacoffee.com/kaangumus" target="_blank" class="btn-coffee" id="btnCoffee" style="padding:6px 12px; font-weight:700;">☕ Kahve Ismarla ($5)</a>
+            <a href="https://buymeacoffee.com/kaangumus" target="_blank" class="btn-coffee" id="btnCoffee" style="padding:6px 12px; font-weight:700;">Kahve Ismarla ($5)</a>
             <a href="https://kaangumus.ninja/passgen/support.html" target="_blank" class="btn-crypto" id="btn_crypto">Monero / Kripto →</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 4: PRIVACY POLICY -->
-    <div class="tab-pane" id="tab-privacy">
-      <div class="privacy-card">
-        <div class="privacy-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-          </svg>
-          <span id="priv_badge"></span>
-        </div>
-        <h3 class="privacy-heading" id="priv_title"></h3>
-        <p class="privacy-text" id="priv_p1"></p>
-
-        <div class="privacy-features">
-          <div class="priv-item">
-            <span class="priv-check">&#10003;</span>
-            <span id="priv_f1"></span>
-          </div>
-          <div class="priv-item">
-            <span class="priv-check">&#10003;</span>
-            <span id="priv_f2"></span>
-          </div>
-          <div class="priv-item">
-            <span class="priv-check">&#10003;</span>
-            <span id="priv_f3"></span>
-          </div>
-          <div class="priv-item">
-            <span class="priv-check">&#10003;</span>
-            <span id="priv_f4"></span>
-          </div>
-        </div>
-        <p class="privacy-footer-note" id="priv_note"></p>
-      </div>
-    </div>
-
     <!-- Footer -->
     <footer class="footer">
       <span id="footer_hint"></span>
-      <span class="version">v1.2.1</span>
+      <span class="version">v1.3.0</span>
     </footer>
 
   </div>
