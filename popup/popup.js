@@ -3,11 +3,14 @@ const LANGS = {
     _name: "Türkçe", brand_tagline: "Şifre Üretici",
     tab_btn_gen: "Şifre Üret", tab_btn_hist: "Geçmiş", tab_btn_settings: "Ayarlar",
     pwd_placeholder: "Şifre oluşturmak için Üret'e tıklayın",
-    btn_copy_title: "Panoya kopyala", lbl_length: "Uzunluk",
+    btn_copy_title: "Panoya kopyala",
+    btn_fill_title: "Sayfaya doldur (Şifre + Onay)",
+    lbl_length: "Uzunluk",
     lbl_char_types: "Karakter Türleri", opt_uppercase: "Büyük Harf (A-Z)",
     opt_lowercase: "Küçük Harf (a-z)", opt_numbers: "Rakamlar (0-9)",
     opt_symbols: "Semboller (!@#$)", btn_generate: "Şifre Üret",
     notice_copied: "Panoya kopyalandı",
+    notice_filled: "Şifre ve onay alanı dolduruldu!",
     footer_hint: "Sağ tık menüsü bu ayarları kullanır",
     strength_weak: "Zayıf", strength_fair: "Orta",
     strength_strong: "Güçlü", strength_vstrong: "Çok Güçlü",
@@ -43,11 +46,14 @@ const LANGS = {
     _name: "English", brand_tagline: "Password Generator",
     tab_btn_gen: "Generator", tab_btn_hist: "History", tab_btn_settings: "Settings",
     pwd_placeholder: "Click Generate to create a password",
-    btn_copy_title: "Copy to clipboard", lbl_length: "Length",
+    btn_copy_title: "Copy to clipboard",
+    btn_fill_title: "Fill page (Password + Confirm)",
+    lbl_length: "Length",
     lbl_char_types: "Character Types", opt_uppercase: "Uppercase (A-Z)",
     opt_lowercase: "Lowercase (a-z)", opt_numbers: "Numbers (0-9)",
     opt_symbols: "Symbols (!@#$)", btn_generate: "Generate Password",
     notice_copied: "Copied to clipboard",
+    notice_filled: "Password & confirm fields filled!",
     footer_hint: "Right-click menu uses these settings",
     strength_weak: "Weak", strength_fair: "Fair",
     strength_strong: "Strong", strength_vstrong: "Very Strong",
@@ -83,11 +89,14 @@ const LANGS = {
     _name: "Español", brand_tagline: "Generador de Contraseñas",
     tab_btn_gen: "Generar", tab_btn_hist: "Historial", tab_btn_settings: "Ajustes",
     pwd_placeholder: "Haz clic en Generar para crear una contraseña",
-    btn_copy_title: "Copiar al portapapeles", lbl_length: "Longitud",
+    btn_copy_title: "Copiar al portapapeles",
+    btn_fill_title: "Rellenar página (Contraseña + Confirmación)",
+    lbl_length: "Longitud",
     lbl_char_types: "Tipos de Caracteres", opt_uppercase: "Mayúsculas (A-Z)",
     opt_lowercase: "Minúsculas (a-z)", opt_numbers: "Números (0-9)",
     opt_symbols: "Símbolos (!@#$)", btn_generate: "Generar Contraseña",
     notice_copied: "Copiado al portapapeles",
+    notice_filled: "¡Campos de contraseña y confirmación rellenados!",
     footer_hint: "El menú contextual usa esta configuración",
     strength_weak: "Débil", strength_fair: "Regular",
     strength_strong: "Fuerte", strength_vstrong: "Muy Fuerte",
@@ -123,11 +132,14 @@ const LANGS = {
     _name: "Français", brand_tagline: "Générateur de Mots de Passe",
     tab_btn_gen: "Générateur", tab_btn_hist: "Historique", tab_btn_settings: "Paramètres",
     pwd_placeholder: "Cliquez sur Générer pour créer un mot de passe",
-    btn_copy_title: "Copier dans le presse-papiers", lbl_length: "Longueur",
+    btn_copy_title: "Copier dans le presse-papiers",
+    btn_fill_title: "Remplir la page (Mot de passe + Confirmation)",
+    lbl_length: "Longueur",
     lbl_char_types: "Types de Caractères", opt_uppercase: "Majuscules (A-Z)",
     opt_lowercase: "Minuscules (a-z)", opt_numbers: "Chiffres (0-9)",
     opt_symbols: "Symboles (!@#$)", btn_generate: "Générer un Mot de Passe",
     notice_copied: "Copié dans le presse-papiers",
+    notice_filled: "Champs mot de passe et confirmation remplis !",
     footer_hint: "Le menu contextuel utilise ces paramètres",
     strength_weak: "Faible", strength_fair: "Moyen",
     strength_strong: "Fort", strength_vstrong: "Très Fort",
@@ -163,11 +175,14 @@ const LANGS = {
     _name: "Русский", brand_tagline: "Генератор паролей",
     tab_btn_gen: "Генератор", tab_btn_hist: "История", tab_btn_settings: "Настройки",
     pwd_placeholder: "Нажмите «Создать» для генерации пароля",
-    btn_copy_title: "Скопировать в буфер обмена", lbl_length: "Длина",
+    btn_copy_title: "Скопировать в буфер обмена",
+    btn_fill_title: "Заполнить страницу (Пароль + Подтверждение)",
+    lbl_length: "Длина",
     lbl_char_types: "Типы символов", opt_uppercase: "Заглавные (A-Z)",
     opt_lowercase: "Строчные (a-z)", opt_numbers: "Цифры (0-9)",
     opt_symbols: "Символы (!@#$)", btn_generate: "Создать пароль",
     notice_copied: "Скопировано в буфер обмена",
+    notice_filled: "Поля пароля и подтверждения заполнены!",
     footer_hint: "Контекстное меню использует эти настройки",
     strength_weak: "Слабый", strength_fair: "Средний",
     strength_strong: "Сильный", strength_vstrong: "Очень сильный",
@@ -203,11 +218,14 @@ const LANGS = {
     _name: "中文", brand_tagline: "密码生成器",
     tab_btn_gen: "生成器", tab_btn_hist: "历史记录", tab_btn_settings: "设置",
     pwd_placeholder: "点击\"生成\"以创建密码",
-    btn_copy_title: "复制到剪贴板", lbl_length: "长度",
+    btn_copy_title: "复制到剪贴板",
+    btn_fill_title: "填充页面 (密码 + 确认)",
+    lbl_length: "长度",
     lbl_char_types: "字符类型", opt_uppercase: "大写字母 (A-Z)",
     opt_lowercase: "小写字母 (a-z)", opt_numbers: "数字 (0-9)",
     opt_symbols: "符号 (!@#$)", btn_generate: "生成密码",
     notice_copied: "已复制到剪贴板",
+    notice_filled: "密码与确认密码已填充！",
     footer_hint: "右键菜单使用这些设置",
     strength_weak: "弱", strength_fair: "一般",
     strength_strong: "强", strength_vstrong: "非常强",
@@ -293,6 +311,7 @@ function applyLang(lang) {
   elCopyBtn.title = t("btn_copy_title");
   elPasswordBox.title = t("btn_copy_title");
   elToggleMask.title = t("lbl_mask_default");
+  if (elFillPage) elFillPage.title = t("btn_fill_title");
 
   if (elDisplay.classList.contains("empty")) elDisplay.textContent = t("pwd_placeholder");
   if (currentPassword) renderStrength(currentPassword);
@@ -489,7 +508,8 @@ function renderHistory() {
   });
 }
 
-function showNotice() {
+function showNotice(customText) {
+  elNotice.textContent = customText || t("notice_copied");
   elNotice.classList.add("visible");
   clearTimeout(noticeTimer);
   noticeTimer = setTimeout(() => elNotice.classList.remove("visible"), 2000);
@@ -499,6 +519,7 @@ function showNotice() {
 const $       = id => document.getElementById(id);
 const elDisplay     = $("passwordDisplay");
 const elCopyBtn     = $("copyBtn");
+const elFillPage    = $("fillPageBtn");
 const elGenBtn      = $("generateBtn");
 const elToggleMask  = $("toggleMaskBtn");
 const elEyeIcon     = $("eyeIcon");
@@ -584,10 +605,30 @@ function render(pwd) {
 function copyPwd() {
   if (!currentPassword) return;
   navigator.clipboard.writeText(currentPassword).then(() => {
-    showNotice();
+    showNotice(t("notice_copied"));
     if (elPasswordBox) {
       elPasswordBox.classList.add("copied");
       setTimeout(() => elPasswordBox.classList.remove("copied"), 400);
+    }
+  });
+}
+
+function fillActiveTab() {
+  if (!currentPassword) return;
+  chrome.runtime.sendMessage({
+    type: "fill_active_tab",
+    password: currentPassword,
+    lang: currentLang,
+    showToast: elShowToast.checked
+  }, (res) => {
+    if (res && res.success) {
+      showNotice(t("notice_filled"));
+      if (elPasswordBox) {
+        elPasswordBox.classList.add("copied");
+        setTimeout(() => elPasswordBox.classList.remove("copied"), 400);
+      }
+    } else {
+      copyPwd();
     }
   });
 }
@@ -622,6 +663,7 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 elGenBtn.addEventListener("click", doGenerate);
 elDisplay.addEventListener("click", copyPwd);
 elCopyBtn.addEventListener("click", copyPwd);
+if (elFillPage) elFillPage.addEventListener("click", fillActiveTab);
 
 elToggleMask.addEventListener("click", (e) => {
   e.stopPropagation();
